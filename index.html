@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Blog | Artigos e Conteúdo de Qualidade</title>
-    <meta name="description"
-        content="Blog com artigos sobre tecnologia, desenvolvimento web e boas práticas de programação.">
-
+    <title>LumiSports | Notícias e Cobertura Esportiva</title>
+    <meta name="description" content="Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.">
+    
     <!-- Vue 3 e Vue Router via CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
-
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6974524299465436"
+     crossorigin="anonymous"></script>
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --secondary-color: #ec4899;
-            --accent-color: #14b8a6;
+            --primary-color: #00FF7F;
+            --primary-dark: #00CC66;
+            --primary-light: #33FF99;
+            --secondary-color: #FF6B00;
+            --accent-color: #FFD700;
             --text-color: #0f172a;
             --text-secondary: #475569;
             --text-light: #94a3b8;
@@ -45,11 +44,11 @@
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-primary: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+            --gradient-accent: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
-
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
@@ -58,7 +57,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
+        
         /* Header e Navegação */
         header {
             background: var(--white);
@@ -69,7 +68,7 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
         }
-
+        
         nav {
             max-width: 1280px;
             margin: 0 auto;
@@ -78,7 +77,7 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             font-size: 1.75rem;
             font-weight: 800;
@@ -92,18 +91,18 @@
             gap: 0.5rem;
             transition: transform 0.2s;
         }
-
+        
         .logo:hover {
             transform: scale(1.05);
         }
-
+        
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
             align-items: center;
         }
-
+        
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -112,7 +111,7 @@
             transition: color 0.3s;
             position: relative;
         }
-
+        
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -123,17 +122,17 @@
             background: var(--gradient-primary);
             transition: width 0.3s;
         }
-
+        
         .nav-links a:hover::after,
         .nav-links a.router-link-active::after {
             width: 100%;
         }
-
+        
         .nav-links a:hover,
         .nav-links a.router-link-active {
             color: var(--primary-color);
         }
-
+        
         /* Container Principal */
         main {
             max-width: 1280px;
@@ -141,7 +140,7 @@
             padding: 3rem 2rem;
             min-height: calc(100vh - 200px);
         }
-
+        
         /* Hero Section */
         .hero-section {
             background: var(--gradient-primary);
@@ -152,7 +151,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .hero-section::before {
             content: '';
             position: absolute;
@@ -164,25 +163,25 @@
             border-radius: 50%;
             transform: translate(30%, -30%);
         }
-
+        
         .hero-content {
             position: relative;
             z-index: 1;
         }
-
+        
         .hero-section h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.1;
         }
-
+        
         .hero-section p {
             font-size: 1.25rem;
             opacity: 0.95;
             max-width: 600px;
         }
-
+        
         /* Filtros de Categoria */
         .filters-section {
             margin-bottom: 3rem;
@@ -191,7 +190,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
+        
         .filter-chip {
             padding: 0.75rem 1.5rem;
             background: var(--white);
@@ -207,20 +206,20 @@
             gap: 0.5rem;
             box-shadow: var(--shadow-sm);
         }
-
+        
         .filter-chip:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
             border-color: var(--primary-color);
         }
-
+        
         .filter-chip.active {
             background: var(--primary-color);
             color: var(--white);
             border-color: var(--primary-color);
             box-shadow: var(--shadow-md);
         }
-
+        
         .filter-chip .count {
             background: rgba(0, 0, 0, 0.1);
             padding: 0.1rem 0.6rem;
@@ -228,7 +227,7 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-
+        
         /* Posts Grid */
         .posts-grid {
             display: grid;
@@ -236,7 +235,7 @@
             gap: 2rem;
             margin-top: 2rem;
         }
-
+        
         .post-card {
             background: var(--white);
             border-radius: 20px;
@@ -250,38 +249,37 @@
             border: 1px solid var(--border-color);
             animation: fadeInUp 0.6s ease-out;
         }
-
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        
         .post-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-light);
         }
-
+        
         .post-card-header {
             height: 200px;
             background: var(--gradient-primary);
             position: relative;
             overflow: hidden;
         }
-
+        
         .post-card-header.has-image {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-
+        
         .post-card-header.has-image::before {
             content: '';
             position: absolute;
@@ -289,29 +287,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
         }
-
-        .post-card-header.tech {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        .post-card-header.futebol {
+            background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
         }
-
-        .post-card-header.web {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        
+        .post-card-header.brasileirao {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
-
-        .post-card-header.design {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        
+        .post-card-header.internacional {
+            background: linear-gradient(135deg, #1E90FF 0%, #4169E1 100%);
         }
-
-        .post-card-header.mobile {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        
+        .post-card-header.transferencias {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
         }
-
-        .post-card-header.data {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        
+        .post-card-header.analises {
+            background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
         }
-
+        
         .post-card-header::before {
             content: '';
             position: absolute;
@@ -319,24 +317,15 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
-
+        
         @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 0.3;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
         }
-
+        
         .category-badge {
             position: absolute;
             top: 1rem;
@@ -350,14 +339,14 @@
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
         }
-
+        
         .post-card-body {
             padding: 1.75rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-
+        
         .post-card h2 {
             font-size: 1.5rem;
             margin-bottom: 0.75rem;
@@ -365,7 +354,7 @@
             font-weight: 700;
             line-height: 1.3;
         }
-
+        
         .post-meta {
             display: flex;
             align-items: center;
@@ -374,20 +363,20 @@
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
-
+        
         .post-meta-item {
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
-
+        
         .post-excerpt {
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 1.5rem;
             flex: 1;
         }
-
+        
         .read-more {
             color: var(--primary-color);
             font-weight: 600;
@@ -397,16 +386,16 @@
             font-size: 0.95rem;
             transition: gap 0.3s;
         }
-
+        
         .post-card:hover .read-more {
             gap: 1rem;
         }
-
+        
         .read-more::after {
             content: '→';
             font-size: 1.2rem;
         }
-
+        
         /* Página Individual do Post */
         .post-featured-image {
             width: 100%;
@@ -416,7 +405,7 @@
             margin-bottom: 3rem;
             box-shadow: var(--shadow-lg);
         }
-
+        
         article.post-single {
             background: var(--white);
             border-radius: 24px;
@@ -426,13 +415,13 @@
             margin: 0 auto;
             border: 1px solid var(--border-color);
         }
-
+        
         .post-single-header {
             margin-bottom: 3rem;
             padding-bottom: 2rem;
             border-bottom: 2px solid var(--border-color);
         }
-
+        
         article.post-single h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -443,7 +432,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
+        
         .post-single .category-badge {
             position: static;
             display: inline-block;
@@ -451,17 +440,17 @@
             background: var(--primary-color);
             color: var(--white);
         }
-
+        
         .post-content {
             font-size: 1.125rem;
             line-height: 1.9;
             color: var(--text-secondary);
         }
-
+        
         .post-content p {
             margin-bottom: 1.75rem;
         }
-
+        
         .post-content p:first-letter {
             font-size: 3rem;
             font-weight: 700;
@@ -470,7 +459,7 @@
             margin-right: 0.5rem;
             color: var(--primary-color);
         }
-
+        
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -484,19 +473,19 @@
             border-radius: 50px;
             transition: all 0.3s;
         }
-
+        
         .back-link:hover {
             transform: translateX(-5px);
             background: var(--primary-color);
             color: var(--white);
             box-shadow: var(--shadow-md);
         }
-
+        
         .back-link::before {
             content: '←';
             font-size: 1.2rem;
         }
-
+        
         /* Formulário de Cadastro */
         .form-container {
             background: var(--white);
@@ -507,7 +496,7 @@
             margin: 0 auto;
             border: 1px solid var(--border-color);
         }
-
+        
         .form-container h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
@@ -517,17 +506,17 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
+        
         .form-subtitle {
             color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
         }
-
+        
         .form-group {
             margin-bottom: 2rem;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.75rem;
@@ -535,7 +524,7 @@
             color: var(--text-color);
             font-size: 0.95rem;
         }
-
+        
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -548,7 +537,7 @@
             transition: all 0.3s;
             background: var(--bg-secondary);
         }
-
+        
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
@@ -557,12 +546,12 @@
             background: var(--white);
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
-
+        
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
         }
-
+        
         .form-helper {
             font-size: 0.875rem;
             color: var(--text-light);
@@ -571,13 +560,13 @@
             align-items: center;
             gap: 0.5rem;
         }
-
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
-
+        
         .btn {
             background: var(--gradient-primary);
             color: var(--white);
@@ -593,22 +582,22 @@
             align-items: center;
             gap: 0.75rem;
         }
-
+        
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-
+        
         .btn:active {
             transform: translateY(0);
         }
-
+        
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
-
+        
         /* Mensagens */
         .message {
             padding: 1.25rem 1.5rem;
@@ -619,76 +608,75 @@
             gap: 1rem;
             animation: slideInDown 0.4s ease-out;
         }
-
+        
         @keyframes slideInDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        
         .message::before {
             font-size: 1.5rem;
         }
-
+        
         .message.success {
             background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
             color: #065f46;
             border: 2px solid #10b981;
         }
-
+        
         .message.success::before {
             content: '✓';
         }
-
+        
         .message.warning {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             color: #92400e;
             border: 2px solid var(--warning-color);
         }
-
+        
         .message.warning::before {
             content: '⚠';
         }
-
+        
         .message.info {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             color: #1e40af;
             border: 2px solid var(--primary-color);
         }
-
+        
         .message.info::before {
             content: 'ℹ';
         }
-
+        
         .empty-state {
             text-align: center;
             padding: 6rem 2rem;
             color: var(--text-secondary);
         }
-
+        
         .empty-state-icon {
             font-size: 5rem;
             margin-bottom: 1.5rem;
             opacity: 0.5;
         }
-
+        
         .empty-state h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
-
+        
         .empty-state p {
             font-size: 1.1rem;
             color: var(--text-light);
         }
-
+        
         /* Footer */
         footer {
             background: var(--white);
@@ -697,17 +685,17 @@
             padding: 3rem 2rem;
             text-align: center;
         }
-
+        
         .footer-content {
             max-width: 1280px;
             margin: 0 auto;
         }
-
+        
         .footer-content p {
             color: var(--text-light);
             font-size: 0.95rem;
         }
-
+        
         .footer-links {
             display: flex;
             justify-content: center;
@@ -715,18 +703,18 @@
             margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-
+        
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
-
+        
         .footer-links a:hover {
             color: var(--primary-color);
         }
-
+        
         /* Loading Animation */
         .loading {
             display: flex;
@@ -734,7 +722,7 @@
             align-items: center;
             padding: 4rem;
         }
-
+        
         .loading-spinner {
             width: 50px;
             height: 50px;
@@ -743,113 +731,108 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
+        
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
-
+        
         /* Responsividade */
         @media (max-width: 1024px) {
             .posts-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
-
+        
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
                 gap: 1.5rem;
                 padding: 1rem;
             }
-
+            
             .nav-links {
                 gap: 1.5rem;
             }
-
+            
             .hero-section {
                 padding: 3rem 2rem;
                 border-radius: 16px;
             }
-
+            
             .hero-section h1 {
                 font-size: 2.5rem;
             }
-
+            
             .hero-section p {
                 font-size: 1.1rem;
             }
-
+            
             article.post-single h1 {
                 font-size: 2.25rem;
             }
-
+            
             article.post-single {
                 padding: 2.5rem 1.5rem;
                 border-radius: 16px;
             }
-
+            
             .posts-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-
+            
             main {
                 padding: 2rem 1rem;
             }
-
+            
             .form-container {
                 padding: 2rem 1.5rem;
                 border-radius: 16px;
             }
-
+            
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-
+            
             .filters-section {
                 gap: 0.75rem;
             }
-
+            
             .filter-chip {
                 padding: 0.6rem 1.25rem;
                 font-size: 0.875rem;
             }
         }
-
+        
         /* Animação de entrada suave */
-        .fade-enter-active,
-        .fade-leave-active {
+        .fade-enter-active, .fade-leave-active {
             transition: opacity 0.3s ease;
         }
-
-        .fade-enter-from,
-        .fade-leave-to {
+        
+        .fade-enter-from, .fade-leave-to {
             opacity: 0;
         }
     </style>
 </head>
-
 <body>
     <div id="app">
         <header>
             <nav>
                 <router-link to="/" class="logo">
-                    <span>✨</span> DevBlog
+                    <span>⚽</span> LumiSports
                 </router-link>
                 <ul class="nav-links">
-                    <li><router-link to="/">Início</router-link></li>
-                    <li><router-link to="/novo-post">Novo Post</router-link></li>
+                    <li><router-link to="/">Notícias</router-link></li>
+                    <li><router-link to="/novo-post">Publicar Notícia</router-link></li>
                 </ul>
             </nav>
         </header>
-
+        
         <main>
             <router-view></router-view>
         </main>
-
+        
         <footer>
             <div class="footer-content">
                 <p>&copy; 2024 DevBlog. Desenvolvido com Vue 3 e muito ☕</p>
@@ -888,7 +871,7 @@
                     .replace(/--+/g, '-')
                     .trim();
             },
-
+            
             formatDate(dateString) {
                 const date = new Date(dateString);
                 return date.toLocaleDateString('pt-BR', {
@@ -897,13 +880,13 @@
                     day: 'numeric'
                 });
             },
-
+            
             isPublished(publishDate) {
                 const now = new Date();
                 const pubDate = new Date(publishDate);
                 return pubDate <= now;
             },
-
+            
             updateMetaTags(title, description) {
                 document.title = title;
                 let metaDescription = document.querySelector('meta[name="description"]');
@@ -911,7 +894,7 @@
                     metaDescription.setAttribute('content', description);
                 }
             },
-
+            
             getCategoryInfo(categoryKey) {
                 return CATEGORIES[categoryKey] || { label: 'Geral', icon: '📝', color: 'tech' };
             }
@@ -987,7 +970,7 @@
                     readTime: 5
                 }
             ],
-
+            
             addPost(post) {
                 const newPost = {
                     id: this.posts.length + 1,
@@ -997,31 +980,31 @@
                 this.posts.push(newPost);
                 return newPost;
             },
-
+            
             getPublishedPosts(categoryFilter = null) {
                 let posts = this.posts.filter(post => utils.isPublished(post.publishDate));
-
+                
                 if (categoryFilter && categoryFilter !== 'todos') {
                     posts = posts.filter(post => post.category === categoryFilter);
                 }
-
+                
                 return posts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
             },
-
+            
             getPostBySlug(slug) {
                 return this.posts.find(post => post.slug === slug);
             },
-
+            
             getCategoryCounts() {
                 const counts = { todos: 0 };
-
+                
                 this.posts.forEach(post => {
                     if (utils.isPublished(post.publishDate)) {
                         counts.todos++;
                         counts[post.category] = (counts[post.category] || 0) + 1;
                     }
                 });
-
+                
                 return counts;
             }
         };
@@ -1205,7 +1188,7 @@
             created() {
                 const slug = this.$route.params.slug;
                 this.post = store.getPostBySlug(slug);
-
+                
                 if (this.post) {
                     this.notPublished = !utils.isPublished(this.post.publishDate);
                     utils.updateMetaTags(
@@ -1371,17 +1354,17 @@
                         this.slugAutoGenerated = true;
                     }
                 },
-
+                
                 async handleSubmit() {
                     this.submitting = true;
                     this.successMessage = '';
-
+                    
                     try {
                         const newPost = store.addPost({ ...this.form });
                         await this.sendToBackend(newPost);
-
+                        
                         this.successMessage = 'Post publicado com sucesso! 🎉';
-
+                        
                         this.form = {
                             title: '',
                             slug: '',
@@ -1393,9 +1376,9 @@
                         };
                         this.slugAutoGenerated = false;
                         this.imageError = false;
-
+                        
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-
+                        
                     } catch (error) {
                         console.error('Erro ao salvar post:', error);
                         alert('❌ Erro ao salvar o post. Tente novamente.');
@@ -1403,7 +1386,7 @@
                         this.submitting = false;
                     }
                 },
-
+                
                 async sendToBackend(postData) {
                     // Função preparada para envio ao backend
                     /*
@@ -1421,7 +1404,7 @@
                     
                     return await response.json();
                     */
-
+                    
                     return new Promise((resolve) => {
                         setTimeout(() => {
                             console.log('📤 Post que seria enviado ao backend:', postData);
@@ -1468,5 +1451,4 @@
         app.mount('#app');
     </script>
 </body>
-
 </html>
