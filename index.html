@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LumiSports | Notícias e Cobertura Esportiva</title>
-    <meta name="description" content="Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.">
-    
+    <meta name="description"
+        content="Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.">
+
     <!-- Vue 3 e Vue Router via CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6974524299465436"
-     crossorigin="anonymous"></script>
-    
+        crossorigin="anonymous"></script>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --primary-color: #00FF7F;
             --primary-dark: #00CC66;
@@ -48,7 +54,22 @@
             --gradient-secondary: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
             --gradient-accent: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
-        
+
+        [data-theme="dark"] {
+            --text-color: #e2e8f0;
+            --text-secondary: #cbd5e1;
+            --text-light: #94a3b8;
+            --bg-color: #0f172a;
+            --bg-secondary: #1e293b;
+            --white: #1e293b;
+            --border-color: #334155;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.3);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
@@ -56,8 +77,9 @@
             background-color: var(--bg-color);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+
         /* Header e Navegação */
         header {
             background: var(--white);
@@ -68,41 +90,64 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         nav {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
-        
+
         .logo {
             font-size: 1.75rem;
             font-weight: 800;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        .logo-text {
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.2s;
         }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
+
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
             align-items: center;
         }
-        
+
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -111,7 +156,7 @@
             transition: color 0.3s;
             position: relative;
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -122,26 +167,190 @@
             background: var(--gradient-primary);
             transition: width 0.3s;
         }
-        
+
         .nav-links a:hover::after,
         .nav-links a.router-link-active::after {
             width: 100%;
         }
-        
+
         .nav-links a:hover,
         .nav-links a.router-link-active {
             color: var(--primary-color);
         }
-        
+
+        /* Toggle Dark Mode */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
         /* Container Principal */
-        main {
-            max-width: 1280px;
+        .main-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
             min-height: calc(100vh - 200px);
         }
-        
-        /* Hero Section */
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .main-content-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Banners de Anúncio */
+        .ad-banner {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .ad-banner:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .ad-banner-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .ad-banner-content {
+            padding: 1.25rem;
+        }
+
+        .ad-banner-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .ad-banner-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .ad-banner-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .ad-banner-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .ad-sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        .ad-sidebar h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.25rem;
+        }
+
+        /* Banner Horizontal (topo da página) */
+        .ad-banner-horizontal {
+            display: flex;
+            flex-direction: row;
+            margin: 2rem 0;
+            max-width: 100%;
+        }
+
+        .ad-banner-horizontal .ad-banner-image {
+            width: 400px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .ad-banner-horizontal .ad-banner-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .ad-banner-horizontal .ad-banner-title {
+            font-size: 1.5rem;
+        }
+
+        .ad-banner-horizontal .ad-banner-description {
+            font-size: 1rem;
+        }
+
+        /* Lista de Anúncios (página de gerenciamento) */
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ad-card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        /* Homepage - Hero Section */
         .hero-section {
             background: var(--gradient-primary);
             border-radius: 24px;
@@ -151,7 +360,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-section::before {
             content: '';
             position: absolute;
@@ -163,25 +372,25 @@
             border-radius: 50%;
             transform: translate(30%, -30%);
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 1;
         }
-        
+
         .hero-section h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.1;
         }
-        
+
         .hero-section p {
             font-size: 1.25rem;
             opacity: 0.95;
             max-width: 600px;
         }
-        
+
         /* Filtros de Categoria */
         .filters-section {
             margin-bottom: 3rem;
@@ -190,7 +399,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        
+
         .filter-chip {
             padding: 0.75rem 1.5rem;
             background: var(--white);
@@ -206,20 +415,20 @@
             gap: 0.5rem;
             box-shadow: var(--shadow-sm);
         }
-        
+
         .filter-chip:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
             border-color: var(--primary-color);
         }
-        
+
         .filter-chip.active {
             background: var(--primary-color);
             color: var(--white);
             border-color: var(--primary-color);
             box-shadow: var(--shadow-md);
         }
-        
+
         .filter-chip .count {
             background: rgba(0, 0, 0, 0.1);
             padding: 0.1rem 0.6rem;
@@ -227,7 +436,7 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-        
+
         /* Posts Grid */
         .posts-grid {
             display: grid;
@@ -235,7 +444,7 @@
             gap: 2rem;
             margin-top: 2rem;
         }
-        
+
         .post-card {
             background: var(--white);
             border-radius: 20px;
@@ -249,37 +458,38 @@
             border: 1px solid var(--border-color);
             animation: fadeInUp 0.6s ease-out;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .post-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-light);
         }
-        
+
         .post-card-header {
             height: 200px;
             background: var(--gradient-primary);
             position: relative;
             overflow: hidden;
         }
-        
+
         .post-card-header.has-image {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        
+
         .post-card-header.has-image::before {
             content: '';
             position: absolute;
@@ -287,29 +497,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
         }
-        
+
         .post-card-header.futebol {
             background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
         }
-        
+
         .post-card-header.brasileirao {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
-        
+
         .post-card-header.internacional {
             background: linear-gradient(135deg, #1E90FF 0%, #4169E1 100%);
         }
-        
+
         .post-card-header.transferencias {
             background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
         }
-        
+
         .post-card-header.analises {
             background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
         }
-        
+
         .post-card-header::before {
             content: '';
             position: absolute;
@@ -317,15 +527,24 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
-        
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.3; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
         }
-        
+
         .category-badge {
             position: absolute;
             top: 1rem;
@@ -338,15 +557,16 @@
             font-weight: 600;
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
+            z-index: 2;
         }
-        
+
         .post-card-body {
             padding: 1.75rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-        
+
         .post-card h2 {
             font-size: 1.5rem;
             margin-bottom: 0.75rem;
@@ -354,7 +574,7 @@
             font-weight: 700;
             line-height: 1.3;
         }
-        
+
         .post-meta {
             display: flex;
             align-items: center;
@@ -363,20 +583,20 @@
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
-        
+
         .post-meta-item {
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
-        
+
         .post-excerpt {
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 1.5rem;
             flex: 1;
         }
-        
+
         .read-more {
             color: var(--primary-color);
             font-weight: 600;
@@ -386,16 +606,16 @@
             font-size: 0.95rem;
             transition: gap 0.3s;
         }
-        
+
         .post-card:hover .read-more {
             gap: 1rem;
         }
-        
+
         .read-more::after {
             content: '→';
             font-size: 1.2rem;
         }
-        
+
         /* Página Individual do Post */
         .post-featured-image {
             width: 100%;
@@ -405,7 +625,7 @@
             margin-bottom: 3rem;
             box-shadow: var(--shadow-lg);
         }
-        
+
         article.post-single {
             background: var(--white);
             border-radius: 24px;
@@ -415,13 +635,13 @@
             margin: 0 auto;
             border: 1px solid var(--border-color);
         }
-        
+
         .post-single-header {
             margin-bottom: 3rem;
             padding-bottom: 2rem;
             border-bottom: 2px solid var(--border-color);
         }
-        
+
         article.post-single h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -432,7 +652,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .post-single .category-badge {
             position: static;
             display: inline-block;
@@ -440,18 +660,18 @@
             background: var(--primary-color);
             color: var(--white);
         }
-        
+
         .post-content {
             font-size: 1.125rem;
             line-height: 1.9;
             color: var(--text-secondary);
         }
-        
+
         .post-content p {
             margin-bottom: 1.75rem;
         }
-        
-        .post-content p:first-letter {
+
+        .post-content p:first-of-type:first-letter {
             font-size: 3rem;
             font-weight: 700;
             line-height: 1;
@@ -459,7 +679,7 @@
             margin-right: 0.5rem;
             color: var(--primary-color);
         }
-        
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -473,20 +693,20 @@
             border-radius: 50px;
             transition: all 0.3s;
         }
-        
+
         .back-link:hover {
             transform: translateX(-5px);
             background: var(--primary-color);
             color: var(--white);
             box-shadow: var(--shadow-md);
         }
-        
+
         .back-link::before {
             content: '←';
             font-size: 1.2rem;
         }
-        
-        /* Formulário de Cadastro */
+
+        /* Formulário */
         .form-container {
             background: var(--white);
             border-radius: 24px;
@@ -496,7 +716,7 @@
             margin: 0 auto;
             border: 1px solid var(--border-color);
         }
-        
+
         .form-container h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
@@ -506,17 +726,17 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .form-subtitle {
             color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
         }
-        
+
         .form-group {
             margin-bottom: 2rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.75rem;
@@ -524,7 +744,7 @@
             color: var(--text-color);
             font-size: 0.95rem;
         }
-        
+
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -536,22 +756,23 @@
             font-family: inherit;
             transition: all 0.3s;
             background: var(--bg-secondary);
+            color: var(--text-color);
         }
-        
+
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
             border-color: var(--primary-color);
             background: var(--white);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 4px rgba(0, 255, 127, 0.1);
         }
-        
+
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
         }
-        
+
         .form-helper {
             font-size: 0.875rem;
             color: var(--text-light);
@@ -560,13 +781,13 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
-        
+
         .btn {
             background: var(--gradient-primary);
             color: var(--white);
@@ -582,22 +803,22 @@
             align-items: center;
             gap: 0.75rem;
         }
-        
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-        
+
         .btn:active {
             transform: translateY(0);
         }
-        
+
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
-        
+
         /* Mensagens */
         .message {
             padding: 1.25rem 1.5rem;
@@ -608,75 +829,76 @@
             gap: 1rem;
             animation: slideInDown 0.4s ease-out;
         }
-        
+
         @keyframes slideInDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .message::before {
             font-size: 1.5rem;
         }
-        
+
         .message.success {
             background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
             color: #065f46;
             border: 2px solid #10b981;
         }
-        
+
         .message.success::before {
             content: '✓';
         }
-        
+
         .message.warning {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             color: #92400e;
             border: 2px solid var(--warning-color);
         }
-        
+
         .message.warning::before {
             content: '⚠';
         }
-        
+
         .message.info {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             color: #1e40af;
             border: 2px solid var(--primary-color);
         }
-        
+
         .message.info::before {
             content: 'ℹ';
         }
-        
+
         .empty-state {
             text-align: center;
             padding: 6rem 2rem;
             color: var(--text-secondary);
         }
-        
+
         .empty-state-icon {
             font-size: 5rem;
             margin-bottom: 1.5rem;
             opacity: 0.5;
         }
-        
+
         .empty-state h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
-        
+
         .empty-state p {
             font-size: 1.1rem;
             color: var(--text-light);
         }
-        
+
         /* Footer */
         footer {
             background: var(--white);
@@ -685,17 +907,17 @@
             padding: 3rem 2rem;
             text-align: center;
         }
-        
+
         .footer-content {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         .footer-content p {
             color: var(--text-light);
             font-size: 0.95rem;
         }
-        
+
         .footer-links {
             display: flex;
             justify-content: center;
@@ -703,139 +925,169 @@
             margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-        
+
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: var(--primary-color);
         }
-        
-        /* Loading Animation */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--border-color);
-            border-top-color: var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
+
         /* Responsividade */
         @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-sidebar {
+                position: static;
+            }
+
+            .ad-banner-horizontal {
+                flex-direction: column;
+            }
+
+            .ad-banner-horizontal .ad-banner-image {
+                width: 100%;
+                height: 200px;
+            }
+
             .posts-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
+
+            .ads-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        
+
         @media (max-width: 768px) {
+            .main-container {
+                padding: 2rem 1rem;
+                gap: 2rem;
+            }
+
             nav {
                 flex-direction: column;
                 gap: 1.5rem;
                 padding: 1rem;
             }
-            
+
             .nav-links {
                 gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            
+
+            .theme-toggle {
+                order: -1;
+            }
+
             .hero-section {
                 padding: 3rem 2rem;
                 border-radius: 16px;
             }
-            
+
             .hero-section h1 {
                 font-size: 2.5rem;
             }
-            
+
             .hero-section p {
                 font-size: 1.1rem;
             }
-            
+
             article.post-single h1 {
                 font-size: 2.25rem;
             }
-            
+
             article.post-single {
                 padding: 2.5rem 1.5rem;
                 border-radius: 16px;
             }
-            
+
             .posts-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
-            
-            main {
-                padding: 2rem 1rem;
-            }
-            
+
             .form-container {
                 padding: 2rem 1.5rem;
                 border-radius: 16px;
             }
-            
+
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            
+
             .filters-section {
                 gap: 0.75rem;
             }
-            
+
             .filter-chip {
                 padding: 0.6rem 1.25rem;
                 font-size: 0.875rem;
             }
         }
-        
-        /* Animação de entrada suave */
-        .fade-enter-active, .fade-leave-active {
-            transition: opacity 0.3s ease;
-        }
-        
-        .fade-enter-from, .fade-leave-to {
-            opacity: 0;
-        }
     </style>
 </head>
+
 <body>
     <div id="app">
         <header>
             <nav>
                 <router-link to="/" class="logo">
-                    <span>⚽</span> LumiSports
+                    <div class="logo-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M177.1 228.6L207.9 320h96.5l29.62-91.38L256 172.1L177.1 228.6zM255.1 0C114.6 0 .0001 114.6 .0001 256S114.6 512 256 512s255.1-114.6 255.1-255.1S397.4 0 255.1 0zM416.6 360.9l-85.4-1.297l-25.15 81.59C290.1 445.5 273.4 448 256 448s-34.09-2.523-50.09-6.859L180.8 359.6l-85.4 1.297c-18.12-27.66-29.15-60.27-30.88-95.31L134.3 216.4L106.6 135.6c21.16-26.21 49.09-46.61 81.06-58.84L256 128l68.29-51.22c31.98 12.23 59.9 32.64 81.06 58.84L377.7 216.4l69.78 49.1C445.8 300.6 434.8 333.2 416.6 360.9z" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">LumiSports</span>
                 </router-link>
                 <ul class="nav-links">
-                    <li><router-link to="/">Notícias</router-link></li>
-                    <li><router-link to="/novo-post">Publicar Notícia</router-link></li>
+                    <li><router-link to="/"><i class="fas fa-home"></i> Notícias</router-link></li>
+                    <li><router-link to="/anuncios"><i class="fas fa-bullhorn"></i> Anúncios</router-link></li>
+                    <li><router-link to="/novo-post"><i class="fas fa-plus-circle"></i> Publicar</router-link></li>
                 </ul>
+                <button @click="toggleTheme" class="theme-toggle"
+                    :title="theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'">
+                    <i v-if="theme === 'light'" class="fas fa-moon"></i>
+                    <i v-else class="fas fa-sun"></i>
+                </button>
             </nav>
         </header>
-        
-        <main>
-            <router-view></router-view>
-        </main>
-        
+
+        <div class="main-container">
+            <main class="main-content" :class="{ 'main-content-full': !showSidebar }">
+                <router-view></router-view>
+            </main>
+
+            <aside v-if="showSidebar" class="ad-sidebar">
+                <h3>📢 Anúncios</h3>
+                <a v-for="ad in sidebarAds" :key="ad.id" :href="ad.url" target="_blank" rel="noopener noreferrer"
+                    class="ad-banner">
+                    <img v-if="ad.imageUrl" :src="ad.imageUrl" :alt="ad.title" class="ad-banner-image">
+                    <div class="ad-banner-content">
+                        <div class="ad-banner-title">{{ ad.title }}</div>
+                        <div class="ad-banner-description">{{ ad.description }}</div>
+                        <span class="ad-banner-cta">{{ ad.cta || 'Saiba Mais' }}</span>
+                    </div>
+                </a>
+                <div v-if="sidebarAds.length === 0"
+                    style="color: var(--text-light); text-align: center; padding: 2rem;">
+                    <p>Nenhum anúncio disponível no momento</p>
+                </div>
+            </aside>
+        </div>
+
         <footer>
             <div class="footer-content">
-                <p>&copy; 2024 DevBlog. Desenvolvido com Vue 3 e muito ☕</p>
+                <p>&copy; 2024 LumiSports. Sua fonte de notícias esportivas ⚽</p>
                 <div class="footer-links">
                     <a href="#">Sobre</a>
                     <a href="#">Contato</a>
@@ -852,11 +1104,11 @@
 
         // Categorias disponíveis
         const CATEGORIES = {
-            'tecnologia': { label: 'Tecnologia', icon: '💻', color: 'tech' },
-            'web-dev': { label: 'Web Dev', icon: '🌐', color: 'web' },
-            'design': { label: 'Design', icon: '🎨', color: 'design' },
-            'mobile': { label: 'Mobile', icon: '📱', color: 'mobile' },
-            'data-science': { label: 'Data Science', icon: '📊', color: 'data' }
+            'futebol': { label: 'Futebol', icon: 'fas fa-futbol', color: 'futebol' },
+            'brasileirao': { label: 'Brasileirão', icon: 'fas fa-trophy', color: 'brasileirao' },
+            'internacional': { label: 'Internacional', icon: 'fas fa-globe-americas', color: 'internacional' },
+            'transferencias': { label: 'Transferências', icon: 'fas fa-exchange-alt', color: 'transferencias' },
+            'analises': { label: 'Análises', icon: 'fas fa-chart-line', color: 'analises' }
         };
 
         // Utilitários
@@ -871,7 +1123,7 @@
                     .replace(/--+/g, '-')
                     .trim();
             },
-            
+
             formatDate(dateString) {
                 const date = new Date(dateString);
                 return date.toLocaleDateString('pt-BR', {
@@ -880,13 +1132,13 @@
                     day: 'numeric'
                 });
             },
-            
+
             isPublished(publishDate) {
                 const now = new Date();
                 const pubDate = new Date(publishDate);
                 return pubDate <= now;
             },
-            
+
             updateMetaTags(title, description) {
                 document.title = title;
                 let metaDescription = document.querySelector('meta[name="description"]');
@@ -894,9 +1146,28 @@
                     metaDescription.setAttribute('content', description);
                 }
             },
-            
+
             getCategoryInfo(categoryKey) {
-                return CATEGORIES[categoryKey] || { label: 'Geral', icon: '📝', color: 'tech' };
+                return CATEGORIES[categoryKey] || { label: 'Geral', icon: '📝', color: 'futebol' };
+            },
+
+            // Cookie management
+            setCookie(name, value, days = 365) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                const expires = "expires=" + date.toUTCString();
+                document.cookie = name + "=" + value + ";" + expires + ";path=/";
+            },
+
+            getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
             }
         };
 
@@ -905,72 +1176,91 @@
             posts: [
                 {
                     id: 1,
-                    title: 'Bem-vindo ao DevBlog',
-                    slug: 'bem-vindo-ao-devblog',
-                    category: 'tecnologia',
-                    imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop',
-                    excerpt: 'Dê as boas-vindas ao seu novo espaço de aprendizado! Explore artigos sobre tecnologia, desenvolvimento e as últimas tendências do mercado.',
-                    content: 'Este é o primeiro post do DevBlog! Estamos muito empolgados em compartilhar conhecimento de qualidade com você.\n\nNosso objetivo é criar um espaço onde desenvolvedores, designers e entusiastas de tecnologia possam aprender, se inspirar e evoluir constantemente. Cada artigo é cuidadosamente elaborado para trazer insights valiosos e práticos.\n\nFique ligado nas próximas publicações e não esqueça de compartilhar com a comunidade!',
-                    publishDate: '2024-01-15',
-                    readTime: 3
+                    title: 'Palmeiras Conquista o Brasileirão 2024',
+                    slug: 'palmeiras-conquista-brasileirao-2024',
+                    category: 'brasileirao',
+                    imageUrl: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=400&fit=crop',
+                    excerpt: 'O Verdão sagrou-se campeão brasileiro pela terceira vez consecutiva em uma campanha histórica com 82 pontos conquistados.',
+                    content: 'O Palmeiras confirmou o tricampeonato brasileiro em uma temporada dominante. Com Abel Ferreira no comando, o time paulista construiu uma campanha sólida desde o início da competição.\n\nO título foi conquistado com três rodadas de antecedência, mostrando a superioridade técnica e tática do elenco alviverde. Destaques para Endrick, artilheiro da equipe, e Weverton, que fez defesas cruciais ao longo do campeonato.\n\nA conquista marca uma era de hegemonia palmeirense no futebol brasileiro, consolidando o trabalho iniciado por Abel Ferreira em 2020.',
+                    publishDate: '2024-12-01',
+                    readTime: 5
                 },
                 {
                     id: 2,
-                    title: 'Vue 3 Composition API: O Guia Definitivo',
-                    slug: 'vue-3-composition-api-guia',
-                    category: 'web-dev',
-                    imageUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop',
-                    excerpt: 'Descubra como a Composition API revolucionou o desenvolvimento Vue.js e aprenda a criar componentes mais organizados e reutilizáveis.',
-                    content: 'A Composition API é uma das maiores novidades do Vue 3, trazendo uma forma totalmente nova de organizar a lógica dos componentes.\n\nCom ela, você ganha mais flexibilidade para reutilizar código, melhor suporte ao TypeScript e uma estrutura mais intuitiva para projetos complexos. Recursos como reactive, ref, computed e watch permitem criar aplicações reativas poderosas.\n\nNeste guia, vamos explorar desde os conceitos básicos até padrões avançados de uso.',
-                    publishDate: '2024-02-01',
-                    readTime: 8
+                    title: 'Real Madrid Anuncia Contratação de Endrick',
+                    slug: 'real-madrid-contratacao-endrick',
+                    category: 'transferencias',
+                    imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop',
+                    excerpt: 'A joia brasileira de 18 anos chega ao Santiago Bernabéu em negócio avaliado em 60 milhões de euros.',
+                    content: 'O Real Madrid oficializou a contratação de Endrick, considerado uma das maiores promessas do futebol mundial. O jovem atacante assinou contrato até 2030 com os Merengues.\n\nEndrick se junta ao time espanhol após uma temporada brilhante pelo Palmeiras, onde marcou 21 gols e chamou atenção de gigantes europeus. O brasileiro seguirá os passos de ídolos como Ronaldo, Robinho e Vinícius Jr.\n\nA apresentação oficial está marcada para janeiro, quando Endrick completará 18 anos e poderá se transferir oficialmente para o clube espanhol.',
+                    publishDate: '2024-11-28',
+                    readTime: 6
                 },
                 {
                     id: 3,
-                    title: 'Design System: Construindo Consistência',
-                    slug: 'design-system-consistencia',
-                    category: 'design',
-                    imageUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop',
-                    excerpt: 'Aprenda a criar e manter um design system eficiente que garanta consistência visual em todos os seus produtos digitais.',
-                    content: 'Um design system bem estruturado é fundamental para manter a consistência em produtos digitais. Ele vai muito além de uma biblioteca de componentes.\n\nInclui princípios de design, tokens de estilo, padrões de interação, diretrizes de acessibilidade e muito mais. Empresas como Airbnb, Uber e Google investem pesadamente em seus design systems.\n\nVamos explorar as melhores práticas e ferramentas para criar o seu próprio sistema de design escalável.',
-                    publishDate: '2024-02-15',
-                    readTime: 10
+                    title: 'Champions League: Manchester City Domina e Vence Barcelona',
+                    slug: 'champions-league-city-barcelona',
+                    category: 'internacional',
+                    imageUrl: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=400&fit=crop',
+                    excerpt: 'Em noite de Haaland, City goleia o Barça por 4 a 1 no Etihad Stadium pelas oitavas de final da Champions.',
+                    content: 'O Manchester City fez uma exibição impecável e goleou o Barcelona por 4 a 1 no jogo de ida das oitavas de final da Champions League. Haaland foi o grande destaque da partida com três gols.\n\nPep Guardiola, ex-técnico do Barcelona, comandou uma aula tática contra seu antigo clube. O City dominou a partida do início ao fim, mostrando porque é um dos favoritos ao título da competição.\n\nO Barcelona tentou reagir no segundo tempo, mas a superioridade inglesa foi evidente. A volta acontece no Camp Nou daqui a três semanas.',
+                    publishDate: '2024-11-25',
+                    readTime: 7
                 },
                 {
                     id: 4,
-                    title: 'React Native vs Flutter: Qual Escolher em 2024?',
-                    slug: 'react-native-vs-flutter-2024',
-                    category: 'mobile',
-                    imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop',
-                    excerpt: 'Comparação detalhada entre as duas principais tecnologias para desenvolvimento mobile multiplataforma no mercado atual.',
-                    content: 'A escolha entre React Native e Flutter é uma das decisões mais importantes ao iniciar um projeto mobile.\n\nAmbas as tecnologias têm suas vantagens: React Native oferece JavaScript familiar e grande ecossistema, enquanto Flutter traz performance nativa e widgets elegantes. A decisão depende do seu projeto, equipe e objetivos.\n\nVamos analisar performance, curva de aprendizado, comunidade, e casos de uso ideais para cada uma.',
-                    publishDate: '2024-03-01',
-                    readTime: 12
+                    title: 'Copa do Brasil: Flamengo Elimina São Paulo nos Pênaltis',
+                    slug: 'copa-brasil-flamengo-sao-paulo',
+                    category: 'futebol',
+                    imageUrl: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=400&fit=crop',
+                    excerpt: 'Após empate em 2 a 2 no tempo normal, Rubro-Negro avança às quartas de final da Copa do Brasil nas penalidades.',
+                    content: 'Em partida emocionante no Maracanã, Flamengo e São Paulo fizeram um grande jogo válido pelas oitavas de final da Copa do Brasil. Com placar agregado empatado, a vaga foi decidida nos pênaltis.\n\nO Flamengo abriu o placar logo aos 10 minutos com Pedro, mas o São Paulo reagiu e virou ainda no primeiro tempo. No segundo tempo, o Mengão empatou e levou a decisão para as penalidades.\n\nRossi foi o herói da classificação, defendendo duas cobranças tricolores. O Flamengo agora aguarda o sorteio das quartas de final.',
+                    publishDate: '2024-11-20',
+                    readTime: 8
                 },
                 {
                     id: 5,
-                    title: 'Machine Learning para Desenvolvedores Web',
-                    slug: 'machine-learning-web-developers',
-                    category: 'data-science',
-                    imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop',
-                    excerpt: 'Introdução prática ao Machine Learning para desenvolvedores web que querem adicionar IA aos seus projetos.',
-                    content: 'Machine Learning não é mais exclusividade de cientistas de dados. Desenvolvedores web podem integrar modelos de IA em suas aplicações.\n\nCom bibliotecas como TensorFlow.js, você pode executar modelos diretamente no navegador. Desde reconhecimento de imagens até processamento de linguagem natural, as possibilidades são vastas.\n\nVamos explorar casos práticos e como começar sua jornada em ML sem precisar ser um especialista.',
-                    publishDate: '2024-03-10',
-                    readTime: 15
-                },
-                {
-                    id: 6,
-                    title: 'Post Futuro - Em Breve',
-                    slug: 'post-futuro-teste',
-                    category: 'tecnologia',
-                    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop',
-                    excerpt: 'Este post ainda não foi publicado. Aguarde a data de lançamento para ter acesso ao conteúdo completo.',
-                    content: 'Conteúdo em desenvolvimento. Este post será publicado em breve com informações exclusivas sobre as últimas tendências em tecnologia.',
-                    publishDate: '2025-12-31',
-                    readTime: 5
+                    title: 'Análise Tática: Como o Arsenal de Arteta Evoluiu',
+                    slug: 'analise-tatica-arsenal-arteta',
+                    category: 'analises',
+                    imageUrl: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&h=400&fit=crop',
+                    excerpt: 'Entenda as mudanças táticas que transformaram o Arsenal em candidato ao título da Premier League.',
+                    content: 'Mikel Arteta tem revolucionado o Arsenal com um estilo de jogo moderno e eficiente. O técnico espanhol implementou um sistema que valoriza a posse de bola e pressão alta.\n\nA evolução passa pela chegada de peças-chave como Declan Rice e a consolidação de jovens talentos como Saka e Martinelli. O esquema tático varia entre 4-3-3 e 4-2-3-1 dependendo do adversário.\n\nA defesa ganhou solidez com Saliba e Gabriel, enquanto o meio-campo controla os jogos com Odegaard ditando o ritmo. O Arsenal voltou a brigar por títulos após anos de reconstrução.',
+                    publishDate: '2024-11-15',
+                    readTime: 10
                 }
             ],
-            
+
+            ads: [
+                {
+                    id: 1,
+                    title: 'Camisa Oficial Seleção Brasileira 2024',
+                    description: 'Chegou a nova camisa da Seleção! Compre agora com 20% OFF.',
+                    imageUrl: 'https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?w=400&h=300&fit=crop',
+                    url: 'https://exemplo.com/camisa-brasil',
+                    cta: 'Comprar Agora',
+                    active: true
+                },
+                {
+                    id: 2,
+                    title: 'Chuteira Nike Mercurial Profissional',
+                    description: 'A chuteira dos campeões. Leveza e tecnologia para seu jogo.',
+                    imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop',
+                    url: 'https://exemplo.com/chuteira-nike',
+                    cta: 'Ver Ofertas',
+                    active: true
+                },
+                {
+                    id: 3,
+                    title: 'Streaming de Futebol - 1 Mês Grátis',
+                    description: 'Assista todos os jogos do seu time favorito. Experimente grátis!',
+                    imageUrl: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=400&h=300&fit=crop',
+                    url: 'https://exemplo.com/streaming',
+                    cta: 'Teste Grátis',
+                    active: true
+                }
+            ],
+
             addPost(post) {
                 const newPost = {
                     id: this.posts.length + 1,
@@ -980,32 +1270,54 @@
                 this.posts.push(newPost);
                 return newPost;
             },
-            
+
             getPublishedPosts(categoryFilter = null) {
                 let posts = this.posts.filter(post => utils.isPublished(post.publishDate));
-                
+
                 if (categoryFilter && categoryFilter !== 'todos') {
                     posts = posts.filter(post => post.category === categoryFilter);
                 }
-                
+
                 return posts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
             },
-            
+
             getPostBySlug(slug) {
                 return this.posts.find(post => post.slug === slug);
             },
-            
+
             getCategoryCounts() {
                 const counts = { todos: 0 };
-                
+
                 this.posts.forEach(post => {
                     if (utils.isPublished(post.publishDate)) {
                         counts.todos++;
                         counts[post.category] = (counts[post.category] || 0) + 1;
                     }
                 });
-                
+
                 return counts;
+            },
+
+            // Gerenciamento de Anúncios
+            addAd(ad) {
+                const newAd = {
+                    id: this.ads.length + 1,
+                    active: true,
+                    ...ad
+                };
+                this.ads.push(newAd);
+                return newAd;
+            },
+
+            getActiveAds() {
+                return this.ads.filter(ad => ad.active);
+            },
+
+            deleteAd(id) {
+                const index = this.ads.findIndex(ad => ad.id === id);
+                if (index !== -1) {
+                    this.ads.splice(index, 1);
+                }
             }
         };
 
@@ -1015,10 +1327,26 @@
                 <div>
                     <div class="hero-section">
                         <div class="hero-content">
-                            <h1>Explore o Mundo da Tecnologia</h1>
-                            <p>Artigos de qualidade sobre desenvolvimento, design e as últimas tendências do mercado tech.</p>
+                            <h1>Últimas Notícias do Futebol</h1>
+                            <p>Fique por dentro de tudo que acontece no mundo esportivo: resultados, análises, transferências e muito mais.</p>
                         </div>
                     </div>
+                    
+                    <!-- Banner Horizontal Superior -->
+                    <a 
+                        v-if="topBannerAd"
+                        :href="topBannerAd.url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="ad-banner ad-banner-horizontal"
+                    >
+                        <img v-if="topBannerAd.imageUrl" :src="topBannerAd.imageUrl" :alt="topBannerAd.title" class="ad-banner-image">
+                        <div class="ad-banner-content">
+                            <div class="ad-banner-title">{{ topBannerAd.title }}</div>
+                            <div class="ad-banner-description">{{ topBannerAd.description }}</div>
+                            <span class="ad-banner-cta">{{ topBannerAd.cta || 'Saiba Mais' }}</span>
+                        </div>
+                    </a>
                     
                     <div class="filters-section">
                         <button 
@@ -1026,7 +1354,7 @@
                             :class="{ active: selectedCategory === 'todos' }"
                             @click="filterByCategory('todos')"
                         >
-                            <span>🎯</span>
+                            <i class="fas fa-th"></i>
                             <span>Todos</span>
                             <span class="count">{{ categoryCounts.todos || 0 }}</span>
                         </button>
@@ -1037,7 +1365,7 @@
                             :class="{ active: selectedCategory === key }"
                             @click="filterByCategory(key)"
                         >
-                            <span>{{ category.icon }}</span>
+                            <i :class="category.icon"></i>
                             <span>{{ category.label }}</span>
                             <span class="count" v-if="categoryCounts[key]">{{ categoryCounts[key] }}</span>
                         </button>
@@ -1063,24 +1391,24 @@
                                 <h2>{{ post.title }}</h2>
                                 <div class="post-meta">
                                     <span class="post-meta-item">
-                                        <span>📅</span>
+                                        <i class="far fa-calendar"></i>
                                         {{ formatDate(post.publishDate) }}
                                     </span>
                                     <span class="post-meta-item">
-                                        <span>⏱️</span>
+                                        <i class="far fa-clock"></i>
                                         {{ post.readTime }} min
                                     </span>
                                 </div>
                                 <p class="post-excerpt">{{ post.excerpt }}</p>
-                                <span class="read-more">Ler artigo completo</span>
+                                <span class="read-more">Ler notícia completa</span>
                             </div>
                         </router-link>
                     </div>
                     
                     <div v-else class="empty-state">
-                        <div class="empty-state-icon">📭</div>
-                        <h2>Nenhum post encontrado</h2>
-                        <p>Não há posts publicados nesta categoria ainda.</p>
+                        <div class="empty-state-icon"><i class="fas fa-futbol"></i></div>
+                        <h2>Nenhuma notícia encontrada</h2>
+                        <p>Não há notícias publicadas nesta categoria ainda.</p>
                     </div>
                 </div>
             `,
@@ -1089,7 +1417,8 @@
                     selectedCategory: 'todos',
                     filteredPosts: [],
                     categories: CATEGORIES,
-                    categoryCounts: {}
+                    categoryCounts: {},
+                    topBannerAd: null
                 };
             },
             methods: {
@@ -1108,9 +1437,16 @@
             created() {
                 this.categoryCounts = store.getCategoryCounts();
                 this.filteredPosts = store.getPublishedPosts();
+
+                // Pegar primeiro anúncio ativo para banner superior
+                const activeAds = store.getActiveAds();
+                if (activeAds.length > 0) {
+                    this.topBannerAd = activeAds[0];
+                }
+
                 utils.updateMetaTags(
-                    'DevBlog | Artigos sobre Tecnologia e Desenvolvimento',
-                    'Blog com artigos de qualidade sobre desenvolvimento web, design, mobile e data science.'
+                    'LumiSports | Notícias e Cobertura Esportiva',
+                    'Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.'
                 );
             }
         };
@@ -1120,13 +1456,13 @@
             template: `
                 <div>
                     <router-link to="/" class="back-link">
-                        Voltar para início
+                        Voltar para notícias
                     </router-link>
                     
                     <div v-if="notPublished" class="message warning">
                         <div>
-                            <strong>Post ainda não publicado</strong>
-                            <p>Este post será publicado em {{ formatDate(post.publishDate) }}</p>
+                            <strong>Notícia ainda não publicada</strong>
+                            <p>Esta notícia será publicada em {{ formatDate(post.publishDate) }}</p>
                         </div>
                     </div>
                     
@@ -1139,17 +1475,17 @@
                         >
                         <div class="post-single-header">
                             <span class="category-badge">
-                                {{ getCategoryInfo(post.category).icon }}
+                                <i :class="getCategoryInfo(post.category).icon"></i>
                                 {{ getCategoryInfo(post.category).label }}
                             </span>
                             <h1>{{ post.title }}</h1>
                             <div class="post-meta">
                                 <span class="post-meta-item">
-                                    <span>📅</span>
+                                    <i class="far fa-calendar"></i>
                                     {{ formatDate(post.publishDate) }}
                                 </span>
                                 <span class="post-meta-item">
-                                    <span>⏱️</span>
+                                    <i class="far fa-clock"></i>
                                     {{ post.readTime }} min de leitura
                                 </span>
                             </div>
@@ -1163,8 +1499,8 @@
                     
                     <div v-else class="message info">
                         <div>
-                            <strong>Post não encontrado</strong>
-                            <p>O post que você está procurando não existe.</p>
+                            <strong>Notícia não encontrada</strong>
+                            <p>A notícia que você está procurando não existe.</p>
                         </div>
                     </div>
                 </div>
@@ -1188,17 +1524,17 @@
             created() {
                 const slug = this.$route.params.slug;
                 this.post = store.getPostBySlug(slug);
-                
+
                 if (this.post) {
                     this.notPublished = !utils.isPublished(this.post.publishDate);
                     utils.updateMetaTags(
-                        `${this.post.title} | DevBlog`,
+                        `${this.post.title} | LumiSports`,
                         this.post.excerpt
                     );
                 } else {
                     utils.updateMetaTags(
-                        'Post não encontrado | DevBlog',
-                        'O post que você está procurando não existe.'
+                        'Notícia não encontrada | LumiSports',
+                        'A notícia que você está procurando não existe.'
                     );
                 }
             }
@@ -1208,25 +1544,25 @@
         const NewPost = {
             template: `
                 <div class="form-container">
-                    <h1>Criar Novo Post</h1>
-                    <p class="form-subtitle">Compartilhe seu conhecimento com a comunidade</p>
+                    <h1>Publicar Nova Notícia</h1>
+                    <p class="form-subtitle">Compartilhe as últimas novidades do mundo esportivo</p>
                     
                     <div v-if="successMessage" class="message success">
                         <div>
                             <strong>{{ successMessage }}</strong>
-                            <p>Seu post foi salvo com sucesso!</p>
+                            <p>Sua notícia foi publicada com sucesso!</p>
                         </div>
                     </div>
                     
                     <form @submit.prevent="handleSubmit">
                         <div class="form-group">
-                            <label for="title">Título do Post *</label>
+                            <label for="title">Título da Notícia *</label>
                             <input 
                                 type="text" 
                                 id="title" 
                                 v-model="form.title"
                                 @input="onTitleChange"
-                                placeholder="Digite um título atraente..."
+                                placeholder="Digite um título chamativo..."
                                 required
                             >
                         </div>
@@ -1240,7 +1576,7 @@
                                 placeholder="https://exemplo.com/imagem.jpg"
                             >
                             <small class="form-helper">
-                                🖼️ Cole a URL de uma imagem para destacar seu post (opcional)
+                                <i class="fas fa-image"></i> Cole a URL de uma imagem para destacar sua notícia (opcional)
                             </small>
                             <div v-if="form.imageUrl" style="margin-top: 1rem;">
                                 <img 
@@ -1262,11 +1598,11 @@
                                     type="text" 
                                     id="slug" 
                                     v-model="form.slug"
-                                    placeholder="url-amigavel-do-post"
+                                    placeholder="url-amigavel-da-noticia"
                                     required
                                 >
                                 <small class="form-helper">
-                                    🔗 /blog/{{ form.slug || 'seu-slug-aqui' }}
+                                    <i class="fas fa-link"></i> /blog/{{ form.slug || 'seu-slug-aqui' }}
                                 </small>
                             </div>
                             
@@ -1275,23 +1611,23 @@
                                 <select id="category" v-model="form.category" required>
                                     <option value="">Selecione uma categoria</option>
                                     <option v-for="(cat, key) in categories" :key="key" :value="key">
-                                        {{ cat.icon }} {{ cat.label }}
+                                        {{ cat.label }}
                                     </option>
                                 </select>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="excerpt">Resumo do Post *</label>
+                            <label for="excerpt">Resumo da Notícia *</label>
                             <textarea 
                                 id="excerpt" 
                                 v-model="form.excerpt"
                                 rows="3"
-                                placeholder="Escreva um breve resumo que apareça na listagem..."
+                                placeholder="Escreva um breve resumo da notícia..."
                                 required
                             ></textarea>
                             <small class="form-helper">
-                                📝 Usado na listagem e nas meta tags de SEO
+                                <i class="fas fa-edit"></i> Aparece na listagem e nas meta tags de SEO
                             </small>
                         </div>
                         
@@ -1301,11 +1637,11 @@
                                 id="content" 
                                 v-model="form.content"
                                 rows="12"
-                                placeholder="Escreva o conteúdo completo do seu artigo..."
+                                placeholder="Escreva o conteúdo completo da notícia..."
                                 required
                             ></textarea>
                             <small class="form-helper">
-                                💡 Separe parágrafos com linhas vazias para melhor formatação
+                                <i class="fas fa-lightbulb"></i> Separe parágrafos com linhas vazias para melhor formatação
                             </small>
                         </div>
                         
@@ -1318,13 +1654,15 @@
                                 required
                             >
                             <small class="form-helper">
-                                ⏰ Posts com data futura ficarão ocultos até a data definida
+                                <i class="far fa-clock"></i> Notícias com data futura ficarão ocultas até a data definida
                             </small>
                         </div>
                         
                         <button type="submit" class="btn" :disabled="submitting">
-                            <span v-if="!submitting">✨ Publicar Post</span>
-                            <span v-else>⏳ Salvando...</span>
+                            <i v-if="!submitting" class="fas fa-futbol"></i>
+                            <i v-else class="fas fa-spinner fa-spin"></i>
+                            <span v-if="!submitting">Publicar Notícia</span>
+                            <span v-else>Publicando...</span>
                         </button>
                     </form>
                 </div>
@@ -1354,17 +1692,17 @@
                         this.slugAutoGenerated = true;
                     }
                 },
-                
+
                 async handleSubmit() {
                     this.submitting = true;
                     this.successMessage = '';
-                    
+
                     try {
                         const newPost = store.addPost({ ...this.form });
                         await this.sendToBackend(newPost);
-                        
-                        this.successMessage = 'Post publicado com sucesso! 🎉';
-                        
+
+                        this.successMessage = 'Notícia publicada com sucesso! 🎉';
+
                         this.form = {
                             title: '',
                             slug: '',
@@ -1376,17 +1714,17 @@
                         };
                         this.slugAutoGenerated = false;
                         this.imageError = false;
-                        
+
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                        
+
                     } catch (error) {
-                        console.error('Erro ao salvar post:', error);
-                        alert('❌ Erro ao salvar o post. Tente novamente.');
+                        console.error('Erro ao salvar notícia:', error);
+                        alert('❌ Erro ao salvar a notícia. Tente novamente.');
                     } finally {
                         this.submitting = false;
                     }
                 },
-                
+
                 async sendToBackend(postData) {
                     // Função preparada para envio ao backend
                     /*
@@ -1404,10 +1742,10 @@
                     
                     return await response.json();
                     */
-                    
+
                     return new Promise((resolve) => {
                         setTimeout(() => {
-                            console.log('📤 Post que seria enviado ao backend:', postData);
+                            console.log('📤 Notícia que seria enviada ao backend:', postData);
                             resolve({ success: true, post: postData });
                         }, 800);
                     });
@@ -1420,8 +1758,260 @@
             },
             created() {
                 utils.updateMetaTags(
-                    'Criar Novo Post | DevBlog',
-                    'Crie e publique novos artigos no seu blog de tecnologia.'
+                    'Publicar Nova Notícia | LumiSports',
+                    'Compartilhe as últimas novidades do mundo esportivo.'
+                );
+            }
+        };
+
+        // Componente Cadastro de Anúncio
+        const NewAd = {
+            template: `
+                <div class="form-container">
+                    <h1>Cadastrar Novo Anúncio</h1>
+                    <p class="form-subtitle">Crie um anúncio para exibir no site</p>
+                    
+                    <div v-if="successMessage" class="message success">
+                        <div>
+                            <strong>{{ successMessage }}</strong>
+                            <p>Seu anúncio foi cadastrado com sucesso!</p>
+                        </div>
+                    </div>
+                    
+                    <form @submit.prevent="handleSubmit">
+                        <div class="form-group">
+                            <label for="adTitle">Título do Anúncio *</label>
+                            <input 
+                                type="text" 
+                                id="adTitle" 
+                                v-model="form.title"
+                                placeholder="Ex: Camisa Oficial do Brasil"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adDescription">Descrição *</label>
+                            <textarea 
+                                id="adDescription" 
+                                v-model="form.description"
+                                rows="3"
+                                placeholder="Descreva o produto ou serviço..."
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adImage">URL da Imagem *</label>
+                            <input 
+                                type="url" 
+                                id="adImage" 
+                                v-model="form.imageUrl"
+                                placeholder="https://exemplo.com/imagem.jpg"
+                                required
+                            >
+                            <small class="form-helper">
+                                <i class="fas fa-image"></i> Recomendado: 400x300 pixels
+                            </small>
+                            <div v-if="form.imageUrl" style="margin-top: 1rem;">
+                                <img 
+                                    :src="form.imageUrl" 
+                                    alt="Preview"
+                                    style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 12px; box-shadow: var(--shadow);"
+                                    @error="imageError = true"
+                                >
+                                <small v-if="imageError" style="color: var(--warning-color); display: block; margin-top: 0.5rem;">
+                                    ⚠️ Não foi possível carregar a imagem
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adUrl">URL de Destino *</label>
+                            <input 
+                                type="url" 
+                                id="adUrl" 
+                                v-model="form.url"
+                                placeholder="https://suaoja.com/produto"
+                                required
+                            >
+                            <small class="form-helper">
+                                <i class="fas fa-link"></i> Para onde o clique levará o usuário
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adCta">Texto do Botão</label>
+                            <input 
+                                type="text" 
+                                id="adCta" 
+                                v-model="form.cta"
+                                placeholder="Ex: Comprar Agora, Saiba Mais..."
+                            >
+                            <small class="form-helper">
+                                <i class="fas fa-comment"></i> Padrão: "Saiba Mais" (se deixar vazio)
+                            </small>
+                        </div>
+                        
+                        <button type="submit" class="btn" :disabled="submitting">
+                            <i v-if="!submitting" class="fas fa-bullhorn"></i>
+                            <i v-else class="fas fa-spinner fa-spin"></i>
+                            <span v-if="!submitting">Cadastrar Anúncio</span>
+                            <span v-else>Cadastrando...</span>
+                        </button>
+                    </form>
+                </div>
+            `,
+            data() {
+                return {
+                    form: {
+                        title: '',
+                        description: '',
+                        imageUrl: '',
+                        url: '',
+                        cta: 'Saiba Mais'
+                    },
+                    submitting: false,
+                    successMessage: '',
+                    imageError: false
+                };
+            },
+            methods: {
+                async handleSubmit() {
+                    this.submitting = true;
+                    this.successMessage = '';
+
+                    try {
+                        const newAd = store.addAd({ ...this.form });
+                        await this.sendToBackend(newAd);
+
+                        this.successMessage = 'Anúncio cadastrado com sucesso! 🎉';
+
+                        this.form = {
+                            title: '',
+                            description: '',
+                            imageUrl: '',
+                            url: '',
+                            cta: 'Saiba Mais'
+                        };
+                        this.imageError = false;
+
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    } catch (error) {
+                        console.error('Erro ao cadastrar anúncio:', error);
+                        alert('❌ Erro ao cadastrar anúncio. Tente novamente.');
+                    } finally {
+                        this.submitting = false;
+                    }
+                },
+
+                async sendToBackend(adData) {
+                    // Função preparada para envio ao backend
+                    /*
+                    const response = await fetch('/api/ads', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(adData)
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Erro ao salvar no backend');
+                    }
+                    
+                    return await response.json();
+                    */
+
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            console.log('📤 Anúncio que seria enviado ao backend:', adData);
+                            resolve({ success: true, ad: adData });
+                        }, 800);
+                    });
+                }
+            },
+            watch: {
+                'form.imageUrl'() {
+                    this.imageError = false;
+                }
+            },
+            created() {
+                utils.updateMetaTags(
+                    'Cadastrar Anúncio | LumiSports',
+                    'Cadastre anúncios para exibir no site de esportes.'
+                );
+            }
+        };
+
+        // Componente Gerenciar Anúncios
+        const ManageAds = {
+            template: `
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div>
+                            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                                Gerenciar Anúncios
+                            </h1>
+                            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+                                Total de anúncios ativos: {{ ads.length }}
+                            </p>
+                        </div>
+                        <router-link to="/anuncios/novo" class="btn">
+                            <i class="fas fa-plus-circle"></i> Novo Anúncio
+                        </router-link>
+                    </div>
+                    
+                    <div v-if="ads.length > 0" class="ads-grid">
+                        <div v-for="ad in ads" :key="ad.id" class="ad-banner" style="cursor: default;">
+                            <img v-if="ad.imageUrl" :src="ad.imageUrl" :alt="ad.title" class="ad-banner-image">
+                            <div class="ad-banner-content">
+                                <div class="ad-banner-title">{{ ad.title }}</div>
+                                <div class="ad-banner-description">{{ ad.description }}</div>
+                                <small style="color: var(--text-light); display: block; margin: 0.5rem 0;">
+                                    🔗 {{ ad.url }}
+                                </small>
+                                <div class="ad-card-actions">
+                                    <button @click="deleteAd(ad.id)" class="btn-small btn-delete">
+                                        🗑️ Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div v-else class="empty-state">
+                        <div class="empty-state-icon">📢</div>
+                        <h2>Nenhum anúncio cadastrado</h2>
+                        <p>Cadastre seu primeiro anúncio para começar!</p>
+                        <router-link to="/anuncios/novo" class="btn" style="margin-top: 2rem;">
+                            ➕ Cadastrar Primeiro Anúncio
+                        </router-link>
+                    </div>
+                </div>
+            `,
+            data() {
+                return {
+                    ads: []
+                };
+            },
+            methods: {
+                loadAds() {
+                    this.ads = store.ads;
+                },
+                deleteAd(id) {
+                    if (confirm('Tem certeza que deseja excluir este anúncio?')) {
+                        store.deleteAd(id);
+                        this.loadAds();
+                    }
+                }
+            },
+            created() {
+                this.loadAds();
+                utils.updateMetaTags(
+                    'Gerenciar Anúncios | LumiSports',
+                    'Gerencie os anúncios exibidos no site.'
                 );
             }
         };
@@ -1430,7 +2020,9 @@
         const routes = [
             { path: '/', component: Home },
             { path: '/blog/:slug', component: PostSingle },
-            { path: '/novo-post', component: NewPost }
+            { path: '/novo-post', component: NewPost },
+            { path: '/anuncios', component: ManageAds },
+            { path: '/anuncios/novo', component: NewAd }
         ];
 
         const router = createRouter({
@@ -1446,9 +2038,52 @@
         });
 
         // Criação da aplicação Vue
-        const app = createApp({});
+        const app = createApp({
+            data() {
+                return {
+                    theme: 'light',
+                    sidebarAds: []
+                };
+            },
+            computed: {
+                showSidebar() {
+                    const path = this.$route.path;
+                    return path === '/' || path.startsWith('/blog/');
+                }
+            },
+            methods: {
+                toggleTheme() {
+                    this.theme = this.theme === 'light' ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', this.theme);
+                    utils.setCookie('lumisports-theme', this.theme);
+                },
+                loadTheme() {
+                    const savedTheme = utils.getCookie('lumisports-theme');
+                    if (savedTheme) {
+                        this.theme = savedTheme;
+                        document.documentElement.setAttribute('data-theme', this.theme);
+                    }
+                },
+                loadSidebarAds() {
+                    const activeAds = store.getActiveAds();
+                    // Pegar os 3 primeiros anúncios (excluindo o primeiro que vai no topo)
+                    this.sidebarAds = activeAds.slice(1, 4);
+                }
+            },
+            mounted() {
+                this.loadTheme();
+                this.loadSidebarAds();
+            },
+            watch: {
+                '$route'() {
+                    this.loadSidebarAds();
+                }
+            }
+        });
+
         app.use(router);
         app.mount('#app');
     </script>
 </body>
+
 </html>
