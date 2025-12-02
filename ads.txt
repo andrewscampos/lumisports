@@ -1,0 +1,51 @@
+ # ads.txt - LumiSports
+# Este arquivo deve ser colocado na raiz do seu domínio
+# Exemplo: https://seusite.com/ads.txt
+
+# ============================================
+# GOOGLE ADSENSE
+# ============================================
+# Substitua 'pub-6974524299465436' pelo seu Publisher ID real
+# Encontre seu ID em: https://adsense.google.com/
+google.com, pub-6974524299465436, DIRECT, f08c47fec0942fa0
+
+# ============================================
+# GOOGLE AD EXCHANGE (AdX)
+# ============================================
+# Opcional: Adicione se você também usar Google Ad Exchange
+# google.com, pub-SEU-ID-ADX, DIRECT, f08c47fec0942fa0
+
+# ============================================
+# OUTRAS REDES DE ANÚNCIOS
+# ============================================
+# Adicione aqui outras redes que você usar:
+# 
+# Exemplo Media.net:
+# media.net, SEU-ID-MEDIANET, DIRECT
+#
+# Exemplo Amazon Publisher Services:
+# aps.amazon.com, SEU-ID-AMAZON, DIRECT
+#
+# Exemplo Taboola:
+# taboola.com, SEU-ID-TABOOLA, DIRECT, c228e6794e811952
+
+# ============================================
+# INSTRUÇÕES
+# ============================================
+# 1. Substitua 'pub-6974524299465436' pelo seu Publisher ID real
+# 2. Você pode encontrar seu Publisher ID em:
+#    - Google AdSense Dashboard
+#    - Minha conta > Configurações > Informações da conta
+# 3. O Publisher ID tem formato: pub-1234567890123456
+# 4. Mantenha sempre o formato:
+#    google.com, pub-SEU-ID, DIRECT, f08c47fec0942fa0
+# 5. Salve o arquivo como 'ads.txt' (sem extensão adicional)
+# 6. Faça upload para a raiz do seu site
+# 7. Acesse: https://seusite.com/ads.txt para verificar
+
+# ============================================
+# VERIFICAÇÃO
+# ============================================
+# Depois de fazer upload, aguarde até 24 horas
+# O Google AdSense verificará automaticamente
+# Status aparecerá em: Sites > Visão geral
