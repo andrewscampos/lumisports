@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Imagem padrão LumiSports">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00FF7F"/>
+      <stop offset="100%" stop-color="#00CC66"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="0" y="580" width="1200" height="50" fill="url(#accent)" opacity="0.15"/>
+  <!-- Campo estilizado -->
+  <ellipse cx="600" cy="340" rx="280" ry="120" fill="none" stroke="#00FF7F" stroke-width="2" opacity="0.25"/>
+  <line x1="600" y1="220" x2="600" y2="460" stroke="#00FF7F" stroke-width="1.5" opacity="0.2"/>
+  <circle cx="600" cy="340" r="50" fill="none" stroke="#00FF7F" stroke-width="1.5" opacity="0.2"/>
+  <!-- Bola -->
+  <circle cx="600" cy="300" r="72" fill="url(#accent)" opacity="0.95"/>
+  <circle cx="600" cy="300" r="58" fill="none" stroke="#0f172a" stroke-width="3"/>
+  <path d="M552 300c18-32 78-32 96 0M540 320c24 28 96 28 120 0M555 345c30-8 60-8 90 0" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="600" cy="300" r="10" fill="#0f172a"/>
+  <!-- Marca -->
+  <text x="600" y="480" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="800" fill="#ffffff">LumiSports</text>
+  <text x="600" y="530" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="500" fill="#94a3b8">Notícias de futebol</text>
+</svg>

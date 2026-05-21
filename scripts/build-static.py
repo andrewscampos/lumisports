@@ -10,6 +10,8 @@ BLOG_DIR = ROOT / "blog"
 SITE_URL = "https://lumisports.com.br"
 ADSENSE_CLIENT = "ca-pub-6974524299465436"
 ADSENSE_SLOT = "6752427405"
+LOGO_FILE = "logo.svg"
+DEFAULT_POST_IMAGE = "images/default-post.svg"
 
 CATEGORY_LABELS = {
     "futebol": "Futebol",
@@ -24,6 +26,22 @@ def esc(text):
     return html.escape(str(text), quote=True)
 
 
+def post_image_url(post):
+    """Retorna URL da imagem do post ou a imagem padrão local."""
+    url = (post.get("imageUrl") or "").strip()
+    return url if url else DEFAULT_POST_IMAGE
+
+
+def is_default_image(post):
+    return not (post.get("imageUrl") or "").strip()
+
+
+def absolute_url(path):
+    if path.startswith("http://") or path.startswith("https://"):
+        return path
+    return f"{SITE_URL}/{path.lstrip('/')}"
+
+
 def adsense_block():
     return f'''<div class="adsense-block">
 <ins class="adsbygoogle" style="display:block" data-ad-client="{ADSENSE_CLIENT}"
@@ -31,20 +49,20 @@ def adsense_block():
 </div>'''
 
 
-def json_ld_article(post, page_url):
+def json_ld_article(post, page_url, image_abs, logo_abs):
     data = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
         "headline": post["title"],
         "description": post.get("metaDescription") or post["excerpt"],
-        "image": [post["imageUrl"]],
+        "image": [image_abs],
         "datePublished": post["publishDate"],
         "dateModified": post["publishDate"],
         "author": {"@type": "Organization", "name": post.get("author", "LumiSports")},
         "publisher": {
             "@type": "Organization",
             "name": "LumiSports",
-            "logo": {"@type": "ImageObject", "url": post["imageUrl"]},
+            "logo": {"@type": "ImageObject", "url": logo_abs},
         },
         "mainEntityOfPage": {"@type": "WebPage", "@id": page_url},
         "keywords": ", ".join(post.get("tags", [])),
@@ -74,6 +92,11 @@ def article_page(post, all_posts):
     desc = post.get("metaDescription") or post["excerpt"]
     keywords = post.get("metaKeywords", "")
     cat = CATEGORY_LABELS.get(post.get("subitem") or post.get("category"), "Futebol")
+    img_rel = "../" + post_image_url(post)
+    img_abs = absolute_url(post_image_url(post))
+    logo_abs = absolute_url(LOGO_FILE)
+    img_default = is_default_image(post)
+    img_class = "post-featured-image post-featured-image--default" if img_default else "post-featured-image"
     paragraphs = "".join(f"<p>{esc(p)}</p>" for p in post["content"].split("\n\n") if p.strip())
     tags_html = "".join(f'<span class="post-tag">{esc(t)}</span>' for t in post.get("tags", []))
     related = [p for p in all_posts if p["slug"] != slug][:3]
@@ -98,24 +121,25 @@ def article_page(post, all_posts):
     <meta property="og:title" content="{esc(post["title"])}">
     <meta property="og:description" content="{esc(desc)}">
     <meta property="og:url" content="{esc(page_url)}">
-    <meta property="og:image" content="{esc(post["imageUrl"])}">
+    <meta property="og:image" content="{esc(img_abs)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{esc(post["title"])}">
     <meta name="twitter:description" content="{esc(desc)}">
-    <meta name="twitter:image" content="{esc(post["imageUrl"])}">
+    <meta name="twitter:image" content="{esc(img_abs)}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/site.css">
+    <link rel="icon" href="../images/logo-icon.svg" type="image/svg+xml">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>
-    <script type="application/ld+json">{json_ld_article(post, page_url)}</script>
+    <script type="application/ld+json">{json_ld_article(post, page_url, img_abs, logo_abs)}</script>
 </head>
 <body>
     <header>
         <div class="top-bar"><div class="top-bar-content"><i class="fas fa-calendar-alt"></i> <span id="current-date"></span></div></div>
         <nav>
-            <a href="../index.html" class="logo"><img src="../logo.svg" alt="LumiSports" width="200" height="48"></a>
+            <a href="../index.html" class="logo"><img src="../{LOGO_FILE}" alt="LumiSports" width="200" height="48"></a>
             <ul class="nav-links">
                 <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="../index.html#noticias">Notícias</a></li>
@@ -128,7 +152,7 @@ def article_page(post, all_posts):
             <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para notícias</a>
             {adsense_block()}
             <article class="post-single" itemscope itemtype="https://schema.org/NewsArticle">
-                <img src="{esc(post["imageUrl"])}" alt="{esc(post["title"])}" class="post-featured-image" width="1200" height="630" itemprop="image">
+                <img src="{esc(img_rel)}" alt="{esc(post["title"])}" class="{img_class}" width="1200" height="630" itemprop="image" onerror="this.onerror=null;this.src='../{DEFAULT_POST_IMAGE}';this.classList.add('post-featured-image--default');">
                 <div class="post-single-header">
                     <span class="category-badge" style="position:static;display:inline-block;margin-bottom:1rem;">{esc(cat)}</span>
                     <h1 itemprop="headline">{esc(post["title"])}</h1>
@@ -170,13 +194,16 @@ def article_page(post, all_posts):
 
 def index_page(posts):
     cards = []
+    default_og = absolute_url(DEFAULT_POST_IMAGE)
     for post in posts:
         slug = post["slug"]
         cat = CATEGORY_LABELS.get(post.get("subitem") or post.get("category"), "Futebol")
         date = format_date(post["publishDate"])
+        img = post_image_url(post)
+        card_img_class = "post-card-image post-card-image--default" if is_default_image(post) else "post-card-image"
         cards.append(f"""
             <a href="blog/{esc(slug)}.html" class="post-card">
-                <div class="post-card-image" style="background-image:url('{esc(post["imageUrl"])}')">
+                <div class="{card_img_class}" style="background-image:url('{esc(img)}')">
                     <span class="category-badge">{esc(cat)}</span>
                 </div>
                 <div class="post-card-body">
@@ -206,7 +233,8 @@ def index_page(posts):
     <meta property="og:title" content="LumiSports | Notícias de Futebol">
     <meta property="og:description" content="Flamengo, Palmeiras, Santos, Libertadores e Seleção Brasileira.">
     <meta property="og:url" content="{SITE_URL}/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80">
+    <meta property="og:image" content="{default_og}">
+    <link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,7 +248,7 @@ def index_page(posts):
     <header>
         <div class="top-bar"><div class="top-bar-content"><i class="fas fa-calendar-alt"></i> <span id="current-date"></span></div></div>
         <nav>
-            <a href="index.html" class="logo"><img src="logo.svg" alt="LumiSports" width="200" height="48"></a>
+            <a href="index.html" class="logo"><img src="{LOGO_FILE}" alt="LumiSports" width="200" height="48"></a>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="#noticias">Notícias</a></li>

@@ -155,7 +155,20 @@ nav {
     height: 180px;
     background-size: cover;
     background-position: center;
+    background-color: var(--bg-secondary);
     position: relative;
+}
+
+.post-card-image--default {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #0f172a;
+}
+
+.post-featured-image--default {
+    object-fit: contain;
+    background: #0f172a;
+    max-height: 360px;
 }
 
 .category-badge {

@@ -32,4 +32,10 @@ Envie para o servidor: `index.html`, `blog/`, `css/`, `js/`, `logo.svg`, `ads.tx
 
 Altere `SITE_URL` em `scripts/build-static.py` se o domínio for diferente de `https://lumisports.com.br`.
 
+## Imagens
+
+- **Logo:** `logo.svg` (cabeçalho) e `images/logo-icon.svg` (favicon)
+- **Padrão de matéria:** `images/default-post.svg` — usada automaticamente quando `imageUrl` estiver vazio no `posts.json`
+- Se a URL externa falhar ao carregar, a página da matéria também cai no fallback padrão (`onerror` no `<img>`)
+
 A versão antiga com Vue/API está em `index.spa.bak.html` (backup).
