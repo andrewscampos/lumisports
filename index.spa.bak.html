@@ -1,0 +1,3494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumiSports | Notícias e Cobertura Esportiva</title>
+    <meta name="description"
+        content="Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.">
+    <meta name="keywords"
+        content="futebol brasileiro, notícias esportivas, Brasileirão 2026, Libertadores, Flamengo, Palmeiras, Santos, Seleção Brasileira, Copa do Mundo 2026, análises de futebol">
+    <meta name="author" content="LumiSports">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://lumisports.com.br/">
+    <meta property="og:site_name" content="LumiSports">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LumiSports | Notícias e Cobertura Esportiva">
+    <meta property="og:description"
+        content="Fique por dentro das últimas notícias do futebol, resultados, análises e tudo sobre o mundo esportivo.">
+    <meta property="og:url" content="https://lumisports.com.br/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LumiSports | Notícias e Cobertura Esportiva">
+    <meta name="twitter:description"
+        content="Notícias de futebol, Brasileirão, Libertadores, Seleção Brasileira e Copa do Mundo 2026.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Vue 3 e Vue Router via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6974524299465436"
+        crossorigin="anonymous"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00FF7F;
+            --primary-dark: #00CC66;
+            --primary-light: #33FF99;
+            --secondary-color: #FF6B00;
+            --accent-color: #FFD700;
+            --text-color: #0f172a;
+            --text-secondary: #475569;
+            --text-light: #94a3b8;
+            --bg-color: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+            --gradient-primary: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+            --gradient-accent: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #e2e8f0;
+            --text-secondary: #cbd5e1;
+            --text-light: #94a3b8;
+            --bg-color: #0f172a;
+            --bg-secondary: #1e293b;
+            --white: #1e293b;
+            --border-color: #334155;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header e Navegação */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .top-bar {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 255, 127, 0.3);
+            transition: all 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            box-shadow: 0 6px 20px rgba(0, 255, 127, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '⚽';
+            position: absolute;
+            top: -8px;
+            right: -18px;
+            font-size: 0.7rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Mobile Menu Hamburger */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: var(--text-color);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: var(--shadow-xl);
+            z-index: 1001;
+            overflow-y: auto;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-drawer.active {
+            left: 0;
+        }
+
+        .mobile-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(2px);
+        }
+
+        .mobile-drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer-header {
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .mobile-drawer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-drawer-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .mobile-drawer-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .mobile-drawer-content {
+            padding: 1rem 0;
+        }
+
+        .mobile-menu-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu-section-title {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu-item:hover,
+        .mobile-menu-item.active {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+        }
+
+        .mobile-menu-item-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-item-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-item:hover .mobile-menu-item-icon {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-item-arrow {
+            color: var(--primary-color);
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-item.expanded .mobile-menu-item-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Submenu Mobile */
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+        }
+
+        .mobile-submenu.active {
+            max-height: 1000px;
+        }
+
+        .mobile-submenu-header {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color);
+            background: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-submenu-back {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-submenu-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .mobile-submenu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem 0.875rem 3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .mobile-submenu-item:hover {
+            background: var(--white);
+            color: var(--primary-color);
+            padding-left: 3.5rem;
+        }
+
+        .mobile-submenu-item img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .mobile-menu-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .mobile-menu-footer-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu-footer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-links a,
+        .nav-dropdown-trigger {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .nav-links a:hover,
+        .nav-dropdown-trigger:hover,
+        .nav-item:hover>.nav-dropdown-trigger,
+        .nav-links a.router-link-active {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .nav-dropdown-trigger i.fa-chevron-down {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover .nav-dropdown-trigger i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Mega Menu Dropdown */
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            padding: 2rem;
+            margin-top: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            min-width: 600px;
+            max-width: 900px;
+            z-index: 1001;
+        }
+
+        .mega-menu.wide {
+            min-width: 800px;
+        }
+
+        .nav-item:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 0;
+        }
+
+        .mega-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .mega-menu-grid.two-cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .mega-menu-grid.four-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .mega-menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mega-menu-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .mega-menu-item:hover {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .mega-menu-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .mega-menu-item:hover .mega-menu-icon {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .team-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Dropdown Featured Content */
+        .mega-menu-featured {
+            grid-column: span 3;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .mega-menu-featured-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mega-menu-featured-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mega-menu-featured-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .mega-menu-featured-item:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .mega-menu-featured-item i {
+            color: var(--primary-color);
+        }
+
+        /* Toggle Dark Mode */
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            border-color: var(--primary-color);
+        }
+
+        /* Container Principal */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .main-content-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Banners de Anúncio */
+        .ad-banner {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .ad-banner:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .ad-banner-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .ad-banner-content {
+            padding: 1.25rem;
+        }
+
+        .ad-banner-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .ad-banner-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .ad-banner-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .ad-banner-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .ad-sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+
+        .ad-sidebar h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.25rem;
+        }
+
+        /* Banner Horizontal (topo da página) */
+        .ad-banner-horizontal {
+            display: flex;
+            flex-direction: row;
+            margin: 2rem 0;
+            max-width: 100%;
+        }
+
+        .ad-banner-horizontal .ad-banner-image {
+            width: 400px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .ad-banner-horizontal .ad-banner-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .ad-banner-horizontal .ad-banner-title {
+            font-size: 1.5rem;
+        }
+
+        .ad-banner-horizontal .ad-banner-description {
+            font-size: 1rem;
+        }
+
+        /* Lista de Anúncios (página de gerenciamento) */
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ad-card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        /* Homepage - Banner Compacto */
+        .hero-section {
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-section p {
+            font-size: 1rem;
+            opacity: 0.95;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Filtros de Categoria */
+        .filters-section {
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-chip {
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .filter-chip.active {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-chip .count {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Subcategorias */
+        .subcategories-section {
+            margin: -1.5rem 0 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        .subcategories-section h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subcategory-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .subcategory-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .subcategory-group-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subcategory-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .subcategory-chip {
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .subcategory-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .subcategory-chip.active {
+            background: var(--primary-light);
+            color: var(--white);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow);
+        }
+
+        .subcategory-chip i {
+            font-size: 0.75rem;
+        }
+
+        .clear-subcategory {
+            padding: 0.5rem 1rem;
+            background: var(--warning-color);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .clear-subcategory:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Posts Grid - Layout Masonry */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Cards com tamanhos variados */
+        .post-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            animation: fadeInUp 0.6s ease-out;
+            height: 100%;
+        }
+
+        /* Card Grande (destaque) - primeiros 2 posts */
+        .post-card.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .post-card.featured .post-card-header {
+            height: 400px;
+        }
+
+        .post-card.featured h2 {
+            font-size: 2rem;
+        }
+
+        .post-card.featured .post-excerpt {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Card Médio (horizontal) - alguns posts */
+        .post-card.medium {
+            grid-column: span 2;
+        }
+
+        .post-card.medium .post-card-content {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .post-card.medium .post-card-header {
+            width: 45%;
+            height: 100%;
+            min-height: 250px;
+        }
+
+        .post-card.medium .post-card-body {
+            width: 55%;
+        }
+
+        /* Card Alto (vertical) */
+        .post-card.tall {
+            grid-row: span 2;
+        }
+
+        .post-card.tall .post-card-header {
+            height: 280px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+
+        .post-card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .post-card-header {
+            height: 220px;
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-card-header.has-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .post-card-header.has-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+
+        .post-card-header.futebol {
+            background: linear-gradient(135deg, #00FF7F 0%, #00CC66 100%);
+        }
+
+        .post-card-header.brasileirao {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        .post-card-header.internacional {
+            background: linear-gradient(135deg, #1E90FF 0%, #4169E1 100%);
+        }
+
+        .post-card-header.transferencias {
+            background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+        }
+
+        .post-card-header.analises {
+            background: linear-gradient(135deg, #9333EA 0%, #7C3AED 100%);
+        }
+
+        .post-card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 2;
+        }
+
+        .post-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+            font-weight: 700;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+            flex: 1;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+        }
+
+        .post-card:hover .read-more {
+            gap: 1rem;
+        }
+
+        .read-more::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        /* Página Individual do Post */
+        .post-featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        article.post-single {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 4rem;
+            box-shadow: var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .post-single-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        article.post-single h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .post-single .category-badge {
+            position: static;
+            display: inline-block;
+            margin-bottom: 1rem;
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        .post-content p {
+            margin-bottom: 1.75rem;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .post-tag {
+            font-size: 0.8rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .post-tag:hover {
+            background: var(--primary-color);
+            color: #0f172a;
+        }
+
+        .post-author {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .post-content p:first-of-type:first-letter {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            float: left;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .back-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        /* Formulário */
+        .form-container {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: var(--bg-secondary);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 255, 127, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-helper {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mensagens */
+        .message {
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message::before {
+            font-size: 1.5rem;
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .message.success::before {
+            content: '✓';
+        }
+
+        .message.warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            border: 2px solid var(--warning-color);
+        }
+
+        .message.warning::before {
+            content: '⚠';
+        }
+
+        .message.info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            border: 2px solid var(--primary-color);
+        }
+
+        .message.info::before {
+            content: 'ℹ';
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 6rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+            color: var(--text-light);
+        }
+
+        .empty-state-icon i {
+            font-size: 5rem;
+        }
+
+        .empty-state h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-sidebar {
+                position: static;
+            }
+
+            .ad-banner-horizontal {
+                flex-direction: column;
+            }
+
+            .ad-banner-horizontal .ad-banner-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .posts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            /* Remover layouts especiais em tablets */
+            .post-card.featured,
+            .post-card.medium,
+            .post-card.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .post-card.medium .post-card-content {
+                flex-direction: column;
+            }
+
+            .post-card.medium .post-card-header {
+                width: 100%;
+                height: 220px;
+            }
+
+            .post-card.medium .post-card-body {
+                width: 100%;
+            }
+
+            .post-card.featured .post-card-header {
+                height: 220px;
+            }
+
+            .post-card.tall .post-card-header {
+                height: 220px;
+            }
+
+            .ads-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            /* Mega Menu Tablet */
+            .mega-menu {
+                left: 0;
+                right: 0;
+                transform: none;
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .mega-menu-grid.four-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1.5rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .top-bar {
+                font-size: 0.75rem;
+                padding: 0.4rem 0;
+            }
+
+            .top-bar-content {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 0.25rem;
+                text-align: center;
+            }
+
+            nav {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .logo-text::after {
+                display: none;
+            }
+
+            /* Mostrar hamburger, esconder nav-links e nav-actions normais */
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-actions {
+                display: none !important;
+            }
+
+            /* Mega Menu Mobile - desabilitar completamente */
+            .mega-menu {
+                display: none !important;
+            }
+
+            .hero-section {
+                padding: 1.5rem;
+                border-radius: 12px;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-section h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-section p {
+                font-size: 0.95rem;
+            }
+
+            .hero-stats {
+                width: 100%;
+                justify-content: space-around;
+                gap: 1rem;
+            }
+
+            .hero-stat-number {
+                font-size: 1.75rem;
+            }
+
+            article.post-single h1 {
+                font-size: 2rem;
+            }
+
+            article.post-single {
+                padding: 2rem 1.25rem;
+                border-radius: 12px;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem;
+            }
+
+            /* Forçar todos os cards a serem normais no mobile */
+            .post-card.featured,
+            .post-card.medium,
+            .post-card.tall {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+
+            .post-card.medium .post-card-content {
+                flex-direction: column !important;
+            }
+
+            .post-card.medium .post-card-header,
+            .post-card.featured .post-card-header,
+            .post-card.tall .post-card-header {
+                width: 100% !important;
+                height: 200px !important;
+            }
+
+            .post-card.medium .post-card-body {
+                width: 100% !important;
+            }
+
+            .post-card.featured h2 {
+                font-size: 1.35rem !important;
+            }
+
+            .post-card.featured .post-excerpt {
+                font-size: 0.95rem !important;
+            }
+
+            .form-container {
+                padding: 1.5rem 1.25rem;
+                border-radius: 12px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .filters-section {
+                gap: 0.6rem;
+            }
+
+            .filter-chip {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            /* Subcategorias Mobile */
+            .subcategories-section {
+                padding: 1rem;
+            }
+
+            .subcategories-section h4 {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+            }
+
+            .clear-subcategory {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+
+            .subcategory-group {
+                margin-bottom: 1rem;
+            }
+
+            .subcategory-group-title {
+                font-size: 0.8rem;
+            }
+
+            .subcategory-chip {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* PAGINAÇÃO E LOADING */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pagination-button {
+            min-width: 44px;
+            height: 44px;
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pagination-button.active {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pagination-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            padding: 0 1rem;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        /* Google AdSense Container */
+        .adsense-container {
+            margin: 2rem 0;
+            min-height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Mobile Drawer Overlay -->
+        <div class="mobile-drawer-overlay" :class="{ active: mobileMenuOpen }" @click="closeMobileMenu"></div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-drawer" :class="{ active: mobileMenuOpen }">
+            <div class="mobile-drawer-header">
+                <div class="mobile-drawer-logo">
+                    <img src="logo.svg" width="200">
+                </div>
+                <button class="mobile-drawer-close" @click="closeMobileMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="mobile-drawer-content">
+                <!-- Destaques -->
+                <div class="mobile-menu-section">
+                    <div class="mobile-menu-section-title">
+                        <i class="fas fa-star"></i> DESTAQUES
+                    </div>
+                    <router-link to="/" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-sync-alt"></i></div>
+                            <span>Últimas Notícias</span>
+                        </div>
+                    </router-link>
+                    <a href="/brasileirao" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-trophy"></i></div>
+                            <span>Brasileirão</span>
+                        </div>
+                    </a>
+                    <a href="/simulador" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-calculator"></i></div>
+                            <span>Simulador de grupos da Copa</span>
+                        </div>
+                    </a>
+                    <a href="/jogos-hoje" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-calendar-day"></i></div>
+                            <span>Jogos de Hoje</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Categorias -->
+                <div class="mobile-menu-section">
+                    <div class="mobile-menu-section-title">
+                        <i class="fas fa-th-large"></i> CATEGORIAS
+                    </div>
+                    <a href="#" class="mobile-menu-item" :class="{ expanded: activeSubmenu === 'futebol' }"
+                        @click.prevent="toggleMobileSubmenu('futebol')">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-futbol"></i></div>
+                            <span>Futebol</span>
+                        </div>
+                        <i class="fas fa-chevron-right mobile-menu-item-arrow"></i>
+                    </a>
+
+                    <!-- Submenu Futebol -->
+                    <div class="mobile-submenu" :class="{ active: activeSubmenu === 'futebol' }">
+                        <div class="mobile-submenu-header">
+                            <button class="mobile-submenu-back" @click="closeSubmenu">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="mobile-submenu-title">
+                                <i class="fas fa-futbol"></i> FUTEBOL
+                            </div>
+                        </div>
+                        <a href="/futebol-nacional" class="mobile-submenu-item" @click="closeMobileMenu">Futebol
+                            Nacional</a>
+                        <a href="/selecao-brasileira" class="mobile-submenu-item" @click="closeMobileMenu">Seleção
+                            Brasileira</a>
+                        <a href="/futebol-feminino" class="mobile-submenu-item" @click="closeMobileMenu">Futebol
+                            Feminino</a>
+                        <a href="/copa-brasil" class="mobile-submenu-item" @click="closeMobileMenu">Copa do Brasil</a>
+                        <a href="/brasileirao" class="mobile-submenu-item" @click="closeMobileMenu">Brasileirão</a>
+                        <a href="/libertadores" class="mobile-submenu-item" @click="closeMobileMenu">Libertadores</a>
+                        <a href="/copa-mundo" class="mobile-submenu-item" @click="closeMobileMenu">Copa do Mundo</a>
+                    </div>
+
+                    <router-link to="/anuncios" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-shield-alt"></i></div>
+                            <span>Anúncios</span>
+                        </div>
+                        <i class="fas fa-chevron-right mobile-menu-item-arrow"></i>
+                    </router-link>
+                    <a href="/tabelas" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-table"></i></div>
+                            <span>Tabelas</span>
+                        </div>
+                        <i class="fas fa-chevron-right mobile-menu-item-arrow"></i>
+                    </a>
+                    <a href="#" class="mobile-menu-item" :class="{ expanded: activeSubmenu === 'esportes' }"
+                        @click.prevent="toggleMobileSubmenu('esportes')">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-basketball-ball"></i></div>
+                            <span>Esportes</span>
+                        </div>
+                        <i class="fas fa-chevron-right mobile-menu-item-arrow"></i>
+                    </a>
+
+                    <!-- Submenu Esportes -->
+                    <div class="mobile-submenu" :class="{ active: activeSubmenu === 'esportes' }">
+                        <div class="mobile-submenu-header">
+                            <button class="mobile-submenu-back" @click="closeSubmenu">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="mobile-submenu-title">
+                                <i class="fas fa-basketball-ball"></i> ESPORTES
+                            </div>
+                        </div>
+                        <a v-for="sport in menuData.esportes.list" :key="sport.name" :href="sport.route"
+                            class="mobile-submenu-item" @click="closeMobileMenu">
+                            {{ sport.name }}
+                        </a>
+                    </div>
+
+                    <a href="/agenda" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="far fa-calendar"></i></div>
+                            <span>Agenda de Jogos</span>
+                        </div>
+                    </a>
+                    <a href="/galerias" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="far fa-images"></i></div>
+                            <span>Galerias</span>
+                        </div>
+                    </a>
+                    <router-link to="/novo-post" class="mobile-menu-item" @click="closeMobileMenu">
+                        <div class="mobile-menu-item-content">
+                            <div class="mobile-menu-item-icon"><i class="fas fa-plus-circle"></i></div>
+                            <span>Publicar Notícia</span>
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+
+            <div class="mobile-menu-footer">
+                <button class="mobile-menu-footer-btn" @click="toggleTheme">
+                    <i :class="theme === 'light' ? 'fas fa-moon' : 'fas fa-sun'"></i>
+                    <span>{{ theme === 'light' ? 'Modo Escuro' : 'Modo Claro' }}</span>
+                </button>
+            </div>
+        </div>
+
+        <header>
+            <div class="top-bar">
+                <div class="top-bar-content">
+                    <div class="top-bar-item">
+                        <i v-if="theme == 'light'" style="color: #0f172a" class="fas fa-calendar-alt"></i>
+                        <i v-else class="fas fa-calendar-alt"></i>
+                        <span v-if="theme == 'light'" style="color: #0f172a">{{ currentDate }}</span>
+                        <span v-else>{{ currentDate }}</span>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn" :class="{ active: mobileMenuOpen }" @click="toggleMobileMenu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <router-link to="/" class="logo">
+                    <img src="logo.svg" width="200">
+                </router-link>
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <router-link to="/"><i class="fas fa-home"></i> Início</router-link>
+                    </li>
+
+                    <!-- Mega Menu Futebol -->
+                    <li class="nav-item">
+                        <button class="nav-dropdown-trigger">
+                            <i class="fas fa-futbol"></i> Futebol <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="mega-menu wide">
+                            <div class="mega-menu-featured">
+                                <div class="mega-menu-featured-title">
+                                    <i class="fas fa-bolt"></i> Acesso Rápido
+                                </div>
+                                <div class="mega-menu-featured-items">
+                                    <a v-for="item in menuData.futebol.featured" :key="item.text" :href="item.route"
+                                        class="mega-menu-featured-item">
+                                        <i :class="item.icon"></i>
+                                        <span>{{ item.text }}</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="mega-menu-grid four-cols">
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-flag"></i> Nacional
+                                    </div>
+                                    <a v-for="item in menuData.futebol.nacional" :key="item.name" :href="item.route"
+                                        class="mega-menu-item">
+                                        <div class="mega-menu-icon"><i :class="item.icon"></i></div>
+                                        <span>{{ item.name }}</span>
+                                    </a>
+                                </div>
+
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-trophy"></i> Campeonatos
+                                    </div>
+                                    <a v-for="item in menuData.futebol.competitions.slice(0, 6)" :key="item.name"
+                                        :href="item.route" class="mega-menu-item">
+                                        <div class="mega-menu-icon"><i :class="item.icon"></i></div>
+                                        <span>{{ item.name }}</span>
+                                    </a>
+                                </div>
+
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-shield-alt"></i> Times (A-F)
+                                    </div>
+                                    <a v-for="team in menuData.futebol.teams.slice(0, 6)" :key="team.name"
+                                        :href="team.route" class="mega-menu-item">
+                                        <img :src="team.logo" :alt="team.name" class="team-logo">
+                                        <span>{{ team.name }}</span>
+                                    </a>
+                                </div>
+
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-shield-alt"></i> Times (G-Z)
+                                    </div>
+                                    <a v-for="team in menuData.futebol.teams.slice(6, 12)" :key="team.name"
+                                        :href="team.route" class="mega-menu-item">
+                                        <img :src="team.logo" :alt="team.name" class="team-logo">
+                                        <span>{{ team.name }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Mega Menu Esportes -->
+                    <li class="nav-item">
+                        <button class="nav-dropdown-trigger">
+                            <i class="fas fa-basketball-ball"></i> Esportes <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="mega-menu">
+                            <div class="mega-menu-grid two-cols">
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-list"></i> Modalidades
+                                    </div>
+                                    <a v-for="sport in menuData.esportes.list" :key="sport.name" :href="sport.route"
+                                        class="mega-menu-item">
+                                        <div class="mega-menu-icon"><i :class="sport.icon"></i></div>
+                                        <span>{{ sport.name }}</span>
+                                    </a>
+                                </div>
+
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-info-circle"></i> Serviços
+                                    </div>
+                                    <a v-for="service in menuData.esportes.services" :key="service.text"
+                                        :href="service.route" class="mega-menu-item">
+                                        <div class="mega-menu-icon"><i :class="service.icon"></i></div>
+                                        <span>{{ service.text }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link to="/anuncios"><i class="fas fa-bullhorn"></i> Anúncios</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/novo-post"><i class="fas fa-plus-circle"></i> Publicar</router-link>
+                    </li>
+                </ul>
+                <div class="nav-actions">
+                    <button @click="toggleTheme" class="theme-toggle"
+                        :title="theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'">
+                        <i v-if="theme === 'light'" class="fas fa-moon"></i>
+                        <i v-else class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <div class="main-container">
+            <main class="main-content" :class="{ 'main-content-full': !showSidebar }">
+                <router-view></router-view>
+            </main>
+
+            <aside v-if="showSidebar" class="ad-sidebar">
+                <h3><i class="fas fa-bullhorn"></i> Anúncios</h3>
+
+                <!-- Google AdSense na página principal -->
+                <template v-if="isHomePage">
+                    <div class="adsense-container" style="margin: 0 0 1.5rem 0;">
+                        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                            data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
+                    </div>
+
+                    <div class="adsense-container" style="margin: 1.5rem 0;">
+                        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                            data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
+                    </div>
+
+                    <div class="adsense-container" style="margin: 1.5rem 0;">
+                        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                            data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
+                    </div>
+                </template>
+
+                <!-- Anúncios cadastrados + Google AdSense nas páginas de matérias -->
+                <template v-else>
+                    <!-- Google AdSense primeiro -->
+                    <div class="adsense-container" style="margin: 0 0 1.5rem 0;">
+                        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                            data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
+                    </div>
+
+                    <!-- Anúncios cadastrados -->
+                    <a v-for="ad in sidebarAds" :key="ad.id" :href="ad.url" target="_blank" rel="noopener noreferrer"
+                        class="ad-banner" @click="handleAdClick(ad.id)">
+                        <img v-if="ad.imageUrl" :src="ad.imageUrl" :alt="ad.title" class="ad-banner-image">
+                        <div class="ad-banner-content">
+                            <div class="ad-banner-title">{{ ad.title }}</div>
+                            <div class="ad-banner-description">{{ ad.description }}</div>
+                            <span class="ad-banner-cta">{{ ad.cta || 'Saiba Mais' }}</span>
+                        </div>
+                    </a>
+
+                    <!-- Google AdSense após anúncios cadastrados -->
+                    <div class="adsense-container" style="margin: 1.5rem 0;">
+                        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                            data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                            <div overflow=""></div>
+                        </amp-ad>
+                    </div>
+
+                    <div v-if="sidebarAds.length === 0"
+                        style="color: var(--text-light); text-align: center; padding: 2rem;">
+                        <p>Nenhum anúncio disponível no momento</p>
+                    </div>
+                </template>
+            </aside>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 LumiSports. Sua fonte de notícias esportivas <i class="fas fa-futbol"></i></p>
+                <div class="footer-links">
+                    <a href="#">Sobre</a>
+                    <a href="#">Contato</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">RSS</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const { createRouter, createWebHashHistory } = VueRouter;
+
+        // CONFIGURAÇÃO DO SITE E API
+        const SITE_CONFIG = {
+            name: 'LumiSports',
+            url: 'https://lumisports.com.br',
+            defaultImage: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80',
+            localPostsPath: 'data/posts.json'
+        };
+
+        const API_CONFIG = {
+            baseURL: 'http://localhost:8080',
+            endpoints: {
+                posts: '/posts',
+                ads: '/ads',
+                teams: '/teams',
+                competitions: '/competitions',
+                sports: '/sports'
+            }
+        };
+
+        // Dados do Mega Menu (virão das APIs)
+        const MENU_DATA = {
+            futebol: {
+                nacional: [
+                    { name: 'Futebol Nacional', icon: 'fas fa-flag', route: '/categoria/futebol-nacional' }
+                ],
+                competitions: [
+                    { name: 'Brasileirão Série A', icon: 'fas fa-trophy', route: '/campeonato/brasileirao' },
+                    { name: 'Copa do Brasil', icon: 'fas fa-trophy', route: '/campeonato/copa-brasil' },
+                    { name: 'Libertadores', icon: 'fas fa-globe-americas', route: '/campeonato/libertadores' },
+                    { name: 'Sul-Americana', icon: 'fas fa-globe-americas', route: '/campeonato/sul-americana' },
+                    { name: 'Paulistão', icon: 'fas fa-map-marker-alt', route: '/campeonato/paulistao' },
+                    { name: 'Cariocão', icon: 'fas fa-map-marker-alt', route: '/campeonato/cariocao' }
+                ],
+                teams: [
+                    { name: 'Flamengo', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/JtSt3XhZl7jz3_PJuxOsAQ_48x48.png', route: '/time/flamengo' },
+                    { name: 'Palmeiras', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/92FLVJ47c1olsPyQY4THjA_48x48.png', route: '/time/palmeiras' },
+                    { name: 'Corinthians', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/Mj8I3mLRMv_JqBVb5WHA7Q_48x48.png', route: '/time/corinthians' },
+                    { name: 'São Paulo', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/2D5NIF90SNK2lg7SHvMcOA_48x48.png', route: '/time/sao-paulo' },
+                    { name: 'Santos', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/bg9lUJ96EJt3XZ5qIMTYpw_48x48.png', route: '/time/santos' },
+                    { name: 'Botafogo', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/HW9i7lHAQsslkw6B6s611w_48x48.png', route: '/time/botafogo' },
+                    { name: 'Fluminense', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/KezYraffZB0Mw29E4PrWbg_48x48.png', route: '/time/fluminense' },
+                    { name: 'Atlético-MG', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/IF7P-PjxEX1XNz7lS-bVzQ_48x48.png', route: '/time/atletico-mg' },
+                    { name: 'Internacional', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/WKH7Ak3vj1t48fLVIJWvYA_48x48.png', route: '/time/internacional' },
+                    { name: 'Grêmio', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/Bm8h1mQUTvOcTH8Fw1tuxw_48x48.png', route: '/time/gremio' },
+                    { name: 'Vasco', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/8AcxYRNGh5k1hN0rnnCWDw_48x48.png', route: '/time/vasco' },
+                    { name: 'Cruzeiro', logo: 'https://ssl.gstatic.com/onebox/media/sports/logos/Uy6Q9SlM6b3LHXq4TpRQRQ_48x48.png', route: '/time/cruzeiro' }
+                ],
+                featured: [
+                    { text: 'Tabelas e Classificação', icon: 'fas fa-table', route: '/tabelas' },
+                    { text: 'Agenda de Jogos', icon: 'far fa-calendar', route: '/agenda' },
+                    { text: 'Mercado da Bola', icon: 'fas fa-exchange-alt', route: '/mercado' },
+                    { text: 'Galerias de Fotos', icon: 'far fa-images', route: '/galerias' }
+                ]
+            },
+            esportes: {
+                list: [
+                    { name: 'NBA', icon: 'fas fa-basketball-ball', route: '/esporte/nba' },
+                    { name: 'NBB', icon: 'fas fa-basketball-ball', route: '/esporte/nbb' },
+                    { name: 'Tênis', icon: 'fas fa-table-tennis', route: '/esporte/tenis' },
+                    { name: 'Vôlei', icon: 'fas fa-volleyball-ball', route: '/esporte/volei' },
+                    { name: 'Lutas', icon: 'fas fa-fist-raised', route: '/esporte/lutas' },
+                    { name: 'Fórmula 1', icon: 'fas fa-flag-checkered', route: '/esporte/formula-1' }
+                ],
+                services: [
+                    { text: 'Onde Assistir', icon: 'fas fa-tv', route: '/onde-assistir' },
+                    { text: 'Todas as Notícias', icon: 'fas fa-newspaper', route: '/noticias' }
+                ]
+            }
+        };
+
+        // Categorias disponíveis com subcategorias
+        const CATEGORIES = {
+            'futebol': {
+                label: 'Futebol',
+                icon: 'fas fa-futbol',
+                color: 'futebol',
+                subcategories: {
+                    'campeonatos': {
+                        label: 'Campeonatos',
+                        icon: 'fas fa-trophy',
+                        items: {
+                            'brasileirao': { label: 'Brasileirão', icon: 'fas fa-flag' },
+                            'libertadores': { label: 'Libertadores', icon: 'fas fa-globe-americas' },
+                            'copa-do-brasil': { label: 'Copa do Brasil', icon: 'fas fa-trophy' },
+                            'estaduais': { label: 'Estaduais', icon: 'fas fa-map-marked-alt' }
+                        }
+                    },
+                    'times': {
+                        label: 'Times',
+                        icon: 'fas fa-shield-alt',
+                        items: {
+                            'flamengo': { label: 'Flamengo', icon: 'fas fa-fire' },
+                            'palmeiras': { label: 'Palmeiras', icon: 'fas fa-leaf' },
+                            'corinthians': { label: 'Corinthians', icon: 'fas fa-star' },
+                            'sao-paulo': { label: 'São Paulo', icon: 'fas fa-star' },
+                            'santos': { label: 'Santos', icon: 'fas fa-crown' },
+                            'botafogo': { label: 'Botafogo', icon: 'fas fa-bolt' },
+                            'fluminense': { label: 'Fluminense', icon: 'fas fa-water' },
+                            'atletico-mg': { label: 'Atlético-MG', icon: 'fas fa-mountain' },
+                            'internacional': { label: 'Internacional', icon: 'fas fa-heart' },
+                            'gremio': { label: 'Grêmio', icon: 'fas fa-flag-checkered' }
+                        }
+                    },
+                    'selecoes': {
+                        label: 'Seleções',
+                        icon: 'fas fa-flag',
+                        items: {
+                            'brasil': { label: 'Brasil', icon: 'fas fa-flag' },
+                            'argentina': { label: 'Argentina', icon: 'fas fa-flag' },
+                            'europa': { label: 'Europa', icon: 'fas fa-globe-europe' }
+                        }
+                    }
+                }
+            },
+            'brasileirao': { label: 'Brasileirão', icon: 'fas fa-trophy', color: 'brasileirao' },
+            'internacional': { label: 'Internacional', icon: 'fas fa-globe-americas', color: 'internacional' },
+            'transferencias': { label: 'Transferências', icon: 'fas fa-exchange-alt', color: 'transferencias' },
+            'analises': { label: 'Análises', icon: 'fas fa-chart-line', color: 'analises' }
+        };
+
+        // UTILITÁRIOS
+        const utils = {
+            generateSlug(title) {
+                return title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/--+/g, '-').trim();
+            },
+            formatDate(dateString) {
+                return new Date(dateString).toLocaleDateString('pt-BR', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                });
+            },
+            isPublished(publishDate) {
+                return new Date(publishDate) <= new Date();
+            },
+            setMeta(attr, key, value) {
+                if (!value) return;
+                let el = document.querySelector(`meta[${attr}="${key}"]`);
+                if (!el) {
+                    el = document.createElement('meta');
+                    el.setAttribute(attr, key);
+                    document.head.appendChild(el);
+                }
+                el.setAttribute('content', value);
+            },
+            setCanonical(url) {
+                let link = document.querySelector('link[rel="canonical"]');
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'canonical';
+                    document.head.appendChild(link);
+                }
+                link.href = url;
+            },
+            injectJsonLd(data) {
+                const id = 'lumisports-jsonld';
+                let script = document.getElementById(id);
+                if (!script) {
+                    script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.id = id;
+                    document.head.appendChild(script);
+                }
+                script.textContent = JSON.stringify(data);
+            },
+            updateMetaTags(title, description, options = {}) {
+                const {
+                    keywords = '',
+                    image = SITE_CONFIG.defaultImage,
+                    url = SITE_CONFIG.url + '/',
+                    type = 'website',
+                    article = null
+                } = options;
+
+                document.title = title;
+                this.setMeta('name', 'description', description);
+                if (keywords) this.setMeta('name', 'keywords', keywords);
+                this.setCanonical(url);
+
+                this.setMeta('property', 'og:title', title);
+                this.setMeta('property', 'og:description', description);
+                this.setMeta('property', 'og:image', image);
+                this.setMeta('property', 'og:url', url);
+                this.setMeta('property', 'og:type', type);
+                this.setMeta('name', 'twitter:title', title);
+                this.setMeta('name', 'twitter:description', description);
+                this.setMeta('name', 'twitter:image', image);
+
+                if (article) {
+                    const jsonLd = {
+                        '@context': 'https://schema.org',
+                        '@type': 'NewsArticle',
+                        headline: article.title,
+                        description: description,
+                        image: [image],
+                        datePublished: article.publishDate,
+                        dateModified: article.publishDate,
+                        author: {
+                            '@type': 'Organization',
+                            name: article.author || SITE_CONFIG.name
+                        },
+                        publisher: {
+                            '@type': 'Organization',
+                            name: SITE_CONFIG.name,
+                            logo: {
+                                '@type': 'ImageObject',
+                                url: SITE_CONFIG.defaultImage
+                            }
+                        },
+                        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+                        keywords: (article.tags || []).join(', ')
+                    };
+                    this.injectJsonLd(jsonLd);
+                } else {
+                    this.injectJsonLd({
+                        '@context': 'https://schema.org',
+                        '@type': 'WebSite',
+                        name: SITE_CONFIG.name,
+                        url: SITE_CONFIG.url,
+                        description: description,
+                        potentialAction: {
+                            '@type': 'SearchAction',
+                            target: SITE_CONFIG.url + '/?q={search_term_string}',
+                            'query-input': 'required name=search_term_string'
+                        }
+                    });
+                }
+            },
+            getCategoryInfo(categoryKey) {
+                return CATEGORIES[categoryKey] || { label: 'Geral', icon: 'fas fa-futbol', color: 'futebol' };
+            },
+            setCookie(name, value, days = 365) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+            },
+            getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+                }
+                return null;
+            }
+        };
+
+        // API SERVICE
+        const apiService = {
+            mapPost(post) {
+                return {
+                    id: post.id,
+                    title: post.title,
+                    slug: post.slug,
+                    category: post.category ? post.category.toLowerCase() : 'futebol',
+                    subcategory: post.subcategory ? post.subcategory.toLowerCase() : null,
+                    subitem: post.subitem ? post.subitem.toLowerCase() : null,
+                    imageUrl: post.imageUrl,
+                    excerpt: post.excerpt,
+                    metaDescription: post.metaDescription || post.excerpt,
+                    metaKeywords: post.metaKeywords || '',
+                    tags: post.tags || [],
+                    author: post.author || 'Redação LumiSports',
+                    content: post.content,
+                    publishDate: post.publishDate,
+                    readTime: post.readTime || 5
+                };
+            },
+            async loadLocalPosts() {
+                const response = await fetch(SITE_CONFIG.localPostsPath);
+                if (!response.ok) throw new Error('Posts locais indisponíveis');
+                const data = await response.json();
+                return data.map(p => this.mapPost(p));
+            },
+            async getPosts() {
+                try {
+                    const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.posts}`);
+                    if (!response.ok) throw new Error('Erro ao buscar posts');
+                    const data = await response.json();
+                    return data.map(post => this.mapPost(post));
+                } catch (error) {
+                    console.warn('API offline, usando posts locais:', error.message);
+                    try {
+                        return await this.loadLocalPosts();
+                    } catch (localError) {
+                        console.error('Erro ao carregar posts locais:', localError);
+                        return [];
+                    }
+                }
+            },
+            async getPostBySlug(slug) {
+                try {
+                    const posts = await this.getPosts();
+                    return posts.find(p => p.slug === slug);
+                } catch (error) {
+                    console.error('Erro ao buscar post:', error);
+                    return null;
+                }
+            },
+            async createPost(postData) {
+                try {
+                    const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.posts}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            ...postData,
+                            category: postData.category.toUpperCase(),
+                            subcategory: postData.subcategory ? postData.subcategory.toUpperCase() : null,
+                            subitem: postData.subitem ? postData.subitem.toUpperCase() : null
+                        })
+                    });
+                    if (!response.ok) throw new Error('Erro ao criar post');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro ao criar post:', error);
+                    throw error;
+                }
+            },
+            async getAds() {
+                try {
+                    const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.ads}`);
+                    if (!response.ok) throw new Error('Erro ao buscar anúncios');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro ao carregar anúncios:', error);
+                    return [];
+                }
+            },
+            async createAd(adData) {
+                try {
+                    const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.ads}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(adData)
+                    });
+                    if (!response.ok) throw new Error('Erro ao criar anúncio');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro ao criar anúncio:', error);
+                    throw error;
+                }
+            },
+            async deleteAd(id) {
+                try {
+                    const response = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.ads}/${id}`, {
+                        method: 'DELETE'
+                    });
+                    if (!response.ok) throw new Error('Erro ao deletar anúncio');
+                } catch (error) {
+                    console.error('Erro ao deletar anúncio:', error);
+                    throw error;
+                }
+            }
+        };
+
+        // COMPONENTE DE PAGINAÇÃO
+        const PaginationComponent = {
+            template: `
+            <div class="pagination" v-if="totalPages > 1">
+                <button class="pagination-button" @click="$emit('page-change', 0)" :disabled="isFirstPage">
+                    <i class="fas fa-angle-double-left"></i>
+                </button>
+                <button class="pagination-button" @click="$emit('page-change', currentPage - 1)" :disabled="isFirstPage">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <button v-for="page in visiblePages" :key="page" class="pagination-button"
+                    :class="{ active: page === currentPage }" @click="$emit('page-change', page)">
+                    {{ page + 1 }}
+                </button>
+                <button class="pagination-button" @click="$emit('page-change', currentPage + 1)" :disabled="isLastPage">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+                <button class="pagination-button" @click="$emit('page-change', totalPages - 1)" :disabled="isLastPage">
+                    <i class="fas fa-angle-double-right"></i>
+                </button>
+                <span class="pagination-info">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+            </div>
+        `,
+            props: { currentPage: { type: Number, required: true }, totalPages: { type: Number, required: true } },
+            computed: {
+                isFirstPage() { return this.currentPage === 0; },
+                isLastPage() { return this.currentPage === this.totalPages - 1; },
+                visiblePages() {
+                    const pages = [], maxVisible = 5;
+                    let start = Math.max(0, this.currentPage - Math.floor(maxVisible / 2));
+                    let end = Math.min(this.totalPages - 1, start + maxVisible - 1);
+                    if (end - start < maxVisible - 1) start = Math.max(0, end - maxVisible + 1);
+                    for (let i = start; i <= end; i++) pages.push(i);
+                    return pages;
+                }
+            }
+        };
+
+        // COMPONENTE HOME
+        const Home = {
+            template: `
+            <div>
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h1>Últimas Notícias do Futebol</h1>
+                        <p>Fique por dentro de tudo que acontece no mundo esportivo</p>
+                    </div>
+                </div>
+
+                <!-- Google AdSense no topo da página inicial -->
+                <div class="adsense-container" style="margin: 2rem 0;">
+                    <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-6974524299465436"
+                        data-ad-slot="6752427405" data-auto-format="rspv" data-full-width="">
+                        <div overflow=""></div>
+                    </amp-ad>
+                </div>
+                
+                 
+
+                <!-- Subcategorias -->
+                <div v-if="showSubcategories" class="subcategories-section">
+                    <h4>
+                        <i class="fas fa-filter"></i> 
+                        Filtrar por: {{ getCategoryLabel(selectedCategory) }}
+                        <button v-if="selectedSubcategory || selectedSubitem" @click="clearSubcategoryFilters" class="clear-subcategory">
+                            <i class="fas fa-times"></i> Limpar Filtros
+                        </button>
+                    </h4>
+                    
+                    <div v-for="(subcat, subKey) in currentSubcategories" :key="subKey" class="subcategory-group">
+                        <div class="subcategory-group-title">
+                            <i :class="subcat.icon"></i>
+                            {{ subcat.label }}
+                        </div>
+                        <div class="subcategory-items">
+                            <button 
+                                v-for="(item, itemKey) in subcat.items" 
+                                :key="itemKey"
+                                class="subcategory-chip"
+                                :class="{ active: selectedSubcategory === subKey && selectedSubitem === itemKey }"
+                                @click="filterBySubcategory(subKey, itemKey)"
+                            >
+                                <i :class="item.icon"></i>
+                                {{ item.label }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div v-if="loading" class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Carregando notícias...</p>
+                </div>
+                
+                <div v-else-if="filteredPosts.length > 0" class="posts-grid">
+                    <router-link 
+                        v-for="post in filteredPosts" 
+                        :key="post.id"
+                        :to="'/blog/' + post.slug" 
+                        class="post-card"
+                    >
+                        <div class="post-card-header" :class="[getCategoryColor(post.category), post.imageUrl ? 'has-image' : '']"
+                            :style="post.imageUrl ? { backgroundImage: 'url(' + post.imageUrl + ')' } : {}">
+                            <span class="category-badge">{{ getCategoryLabel(post.category) }}</span>
+                        </div>
+                        <div class="post-card-body">
+                            <h2>{{ post.title }}</h2>
+                            <div class="post-meta">
+                                <span class="post-meta-item"><i class="far fa-calendar"></i>{{ formatDate(post.publishDate) }}</span>
+                                <span class="post-meta-item"><i class="far fa-clock"></i>{{ post.readTime }} min</span>
+                                <span v-if="post.subitem" class="post-meta-item">
+                                    <i class="fas fa-tag"></i>{{ getSubitemLabel(post.category, post.subcategory, post.subitem) }}
+                                </span>
+                            </div>
+                            <p class="post-excerpt">{{ post.excerpt }}</p>
+                            <span class="read-more">Ler notícia completa</span>
+                        </div>
+                    </router-link>
+                </div>
+                
+                <div v-else class="empty-state">
+                    <div class="empty-state-icon"><i class="fas fa-futbol"></i></div>
+                    <h2>Nenhuma notícia encontrada</h2>
+                    <p>Não há notícias publicadas nesta categoria ainda.</p>
+                </div>
+                
+                <pagination-component v-if="!loading && pagination.totalPages > 1"
+                    :current-page="pagination.currentPage" :total-pages="pagination.totalPages"
+                    @page-change="changePage"></pagination-component>
+            </div>
+        `,
+            components: { 'pagination-component': PaginationComponent },
+            data() {
+                return {
+                    selectedCategory: 'todos',
+                    selectedSubcategory: null,
+                    selectedSubitem: null,
+                    allPosts: [],
+                    filteredPosts: [],
+                    categories: CATEGORIES,
+                    categoryCounts: {},
+                    loading: false,
+                    pagination: { currentPage: 0, totalPages: 0, size: 6 }
+                };
+            },
+            computed: {
+                showSubcategories() {
+                    return this.selectedCategory !== 'todos' &&
+                        this.categories[this.selectedCategory] &&
+                        this.categories[this.selectedCategory].subcategories;
+                },
+                currentSubcategories() {
+                    if (!this.showSubcategories) return {};
+                    return this.categories[this.selectedCategory].subcategories;
+                }
+            },
+            methods: {
+                formatDate: utils.formatDate,
+                getCategoryLabel(key) { return utils.getCategoryInfo(key).label; },
+                getCategoryColor(key) { return utils.getCategoryInfo(key).color; },
+                getSubitemLabel(category, subcategory, subitem) {
+                    if (!category || !subcategory || !subitem) return '';
+                    const cat = CATEGORIES[category];
+                    if (!cat || !cat.subcategories || !cat.subcategories[subcategory]) return '';
+                    const sub = cat.subcategories[subcategory];
+                    if (!sub.items || !sub.items[subitem]) return '';
+                    return sub.items[subitem].label;
+                },
+                async loadPosts() {
+                    this.loading = true;
+                    try {
+                        this.allPosts = await apiService.getPosts();
+                        this.updateFilteredPosts();
+                        this.updateCategoryCounts();
+                    } catch (error) {
+                        console.error('Erro ao carregar posts:', error);
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+                updateFilteredPosts() {
+                    let posts = this.allPosts.filter(p => utils.isPublished(p.publishDate));
+
+                    // Filtrar por categoria
+                    if (this.selectedCategory !== 'todos') {
+                        posts = posts.filter(p => p.category === this.selectedCategory);
+                    }
+
+                    // Filtrar por subcategoria e subitem
+                    if (this.selectedSubcategory && this.selectedSubitem) {
+                        posts = posts.filter(p =>
+                            p.subcategory === this.selectedSubcategory &&
+                            p.subitem === this.selectedSubitem
+                        );
+                    }
+
+                    posts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+
+                    const start = this.pagination.currentPage * this.pagination.size;
+                    const end = start + this.pagination.size;
+
+                    this.filteredPosts = posts.slice(start, end);
+                    this.pagination.totalPages = Math.ceil(posts.length / this.pagination.size);
+                },
+                async changePage(page) {
+                    this.pagination.currentPage = page;
+                    this.updateFilteredPosts();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+                async filterByCategory(category) {
+                    this.selectedCategory = category;
+                    this.selectedSubcategory = null;
+                    this.selectedSubitem = null;
+                    this.pagination.currentPage = 0;
+                    this.updateFilteredPosts();
+                },
+                async filterBySubcategory(subcategory, subitem) {
+                    this.selectedSubcategory = subcategory;
+                    this.selectedSubitem = subitem;
+                    this.pagination.currentPage = 0;
+                    this.updateFilteredPosts();
+                },
+                clearSubcategoryFilters() {
+                    this.selectedSubcategory = null;
+                    this.selectedSubitem = null;
+                    this.pagination.currentPage = 0;
+                    this.updateFilteredPosts();
+                },
+                updateCategoryCounts() {
+                    const counts = { todos: 0 };
+                    this.allPosts.forEach(p => {
+                        if (utils.isPublished(p.publishDate)) {
+                            counts.todos++;
+                            counts[p.category] = (counts[p.category] || 0) + 1;
+                        }
+                    });
+                    this.categoryCounts = counts;
+                }
+            },
+            async created() {
+                await this.loadPosts();
+                utils.updateMetaTags(
+                    'LumiSports | Notícias de Futebol, Brasileirão e Copa do Mundo 2026',
+                    'Cobertura completa: Flamengo, Palmeiras, Santos, Libertadores, Seleção Brasileira, análises e resultados do futebol brasileiro.',
+                    {
+                        keywords: 'notícias futebol, Brasileirão 2026, Libertadores, Copa do Mundo, Flamengo, Palmeiras, Santos, Seleção Brasileira'
+                    }
+                );
+            }
+        };
+
+        // Componente PostSingle
+        const PostSingle = {
+            template: `<div><router-link to="/" class="back-link">Voltar para notícias</router-link>
+            <div v-if="notPublished" class="message warning"><div><strong>Notícia ainda não publicada</strong>
+            <p>Esta notícia será publicada em {{ formatDate(post.publishDate) }}</p></div></div>
+            <article v-if="post" class="post-single" itemscope itemtype="https://schema.org/NewsArticle">
+                <img v-if="post.imageUrl" :src="post.imageUrl" :alt="post.title" class="post-featured-image" itemprop="image">
+                <div class="post-single-header">
+                    <h1 itemprop="headline">{{ post.title }}</h1>
+                    <span class="category-badge"><i :class="getCategoryInfo(post.category).icon"></i>{{ getCategoryInfo(post.category).label }}</span>
+                    <div class="post-meta">
+                        <span class="post-meta-item"><i class="far fa-calendar"></i><time :datetime="post.publishDate">{{ formatDate(post.publishDate) }}</time></span>
+                        <span class="post-meta-item"><i class="far fa-clock"></i>{{ post.readTime }} min de leitura</span>
+                    </div>
+                    <p class="post-author" v-if="post.author"><i class="fas fa-pen-nib"></i> {{ post.author }}</p>
+                </div>
+                <div class="post-content" itemprop="articleBody"><p v-for="(p, i) in contentParagraphs" :key="i">{{ p }}</p></div>
+                <div v-if="post.tags && post.tags.length" class="post-tags">
+                    <span v-for="tag in post.tags" :key="tag" class="post-tag"><i class="fas fa-hashtag"></i> {{ tag }}</span>
+                </div>
+            </article>
+            <div v-else class="message info"><div><strong>Notícia não encontrada</strong>
+            <p>Confira as <router-link to="/">últimas notícias</router-link> no LumiSports.</p></div></div>
+        </div>`,
+            data() { return { post: null, notPublished: false }; },
+            computed: {
+                contentParagraphs() {
+                    if (!this.post || !this.post.content) return [];
+                    return this.post.content.split('\n\n').filter(p => p.trim());
+                }
+            },
+            methods: {
+                formatDate: utils.formatDate,
+                getCategoryInfo: utils.getCategoryInfo,
+                applySeo() {
+                    if (!this.post) return;
+                    const desc = this.post.metaDescription || this.post.excerpt;
+                    const pageUrl = SITE_CONFIG.url + '/#/blog/' + this.post.slug;
+                    utils.updateMetaTags(
+                        this.post.title + ' | LumiSports',
+                        desc,
+                        {
+                            keywords: this.post.metaKeywords,
+                            image: this.post.imageUrl || SITE_CONFIG.defaultImage,
+                            url: pageUrl,
+                            type: 'article',
+                            article: this.post
+                        }
+                    );
+                }
+            },
+            async created() {
+                const slug = this.$route.params.slug;
+                this.post = await apiService.getPostBySlug(slug);
+                if (this.post) {
+                    this.notPublished = !utils.isPublished(this.post.publishDate);
+                    this.applySeo();
+                } else {
+                    utils.updateMetaTags('Notícia não encontrada | LumiSports', 'A notícia que você procura não está disponível no LumiSports.');
+                }
+            },
+            watch: {
+                '$route.params.slug': async function (slug) {
+                    this.post = await apiService.getPostBySlug(slug);
+                    if (this.post) {
+                        this.notPublished = !utils.isPublished(this.post.publishDate);
+                        this.applySeo();
+                    }
+                }
+            }
+        };
+
+        // Componente NewPost
+        const NewPost = {
+            template: `<div class="form-container"><h1>Publicar Nova Notícia</h1><p class="form-subtitle">Compartilhe as últimas novidades</p>
+            <div v-if="successMessage" class="message success"><div><strong>{{ successMessage }}</strong></div></div>
+            <form @submit.prevent="handleSubmit">
+                <div class="form-group"><label>Título *</label><input v-model="form.title" @input="onTitleChange" required></div>
+                <div class="form-group"><label>URL da Imagem</label><input type="url" v-model="form.imageUrl"></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Slug *</label><input v-model="form.slug" required></div>
+                    <div class="form-group"><label>Categoria *</label>
+                        <select v-model="form.category" @change="onCategoryChange" required>
+                            <option value="">Selecione</option>
+                            <option v-for="(cat, key) in categories" :key="key" :value="key">{{ cat.label }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Subcategorias -->
+                <div v-if="hasSubcategories" class="form-row">
+                    <div class="form-group">
+                        <label>Tipo de Conteúdo</label>
+                        <select v-model="form.subcategory" @change="onSubcategoryChange">
+                            <option value="">Selecione</option>
+                            <option v-for="(subcat, key) in currentSubcategories" :key="key" :value="key">
+                                {{ subcat.label }}
+                            </option>
+                        </select>
+                    </div>
+                    <div v-if="hasSubitems" class="form-group">
+                        <label>{{ currentSubcategoryLabel }}</label>
+                        <select v-model="form.subitem">
+                            <option value="">Selecione</option>
+                            <option v-for="(item, key) in currentSubitems" :key="key" :value="key">
+                                {{ item.label }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group"><label>Resumo *</label><textarea v-model="form.excerpt" rows="3" required></textarea></div>
+                <div class="form-group"><label>Conteúdo *</label><textarea v-model="form.content" rows="12" required></textarea></div>
+                <div class="form-group"><label>Data de Publicação *</label><input type="date" v-model="form.publishDate" required></div>
+                <button type="submit" class="btn" :disabled="submitting">
+                    <i v-if="!submitting" class="fas fa-futbol"></i><i v-else class="fas fa-spinner fa-spin"></i>
+                    <span>{{ submitting ? 'Publicando...' : 'Publicar Notícia' }}</span>
+                </button>
+            </form></div>`,
+            data() {
+                return {
+                    form: {
+                        title: '',
+                        slug: '',
+                        imageUrl: '',
+                        category: '',
+                        subcategory: '',
+                        subitem: '',
+                        excerpt: '',
+                        content: '',
+                        publishDate: new Date().toISOString().split('T')[0]
+                    },
+                    categories: CATEGORIES,
+                    submitting: false,
+                    successMessage: '',
+                    slugAutoGenerated: false
+                };
+            },
+            computed: {
+                hasSubcategories() {
+                    return this.form.category &&
+                        this.categories[this.form.category] &&
+                        this.categories[this.form.category].subcategories;
+                },
+                currentSubcategories() {
+                    if (!this.hasSubcategories) return {};
+                    return this.categories[this.form.category].subcategories;
+                },
+                hasSubitems() {
+                    return this.form.subcategory &&
+                        this.currentSubcategories[this.form.subcategory] &&
+                        this.currentSubcategories[this.form.subcategory].items;
+                },
+                currentSubitems() {
+                    if (!this.hasSubitems) return {};
+                    return this.currentSubcategories[this.form.subcategory].items;
+                },
+                currentSubcategoryLabel() {
+                    if (!this.form.subcategory || !this.currentSubcategories[this.form.subcategory]) return '';
+                    return this.currentSubcategories[this.form.subcategory].label;
+                }
+            },
+            methods: {
+                onTitleChange() {
+                    if (!this.form.slug || this.slugAutoGenerated) {
+                        this.form.slug = utils.generateSlug(this.form.title);
+                        this.slugAutoGenerated = true;
+                    }
+                },
+                onCategoryChange() {
+                    this.form.subcategory = '';
+                    this.form.subitem = '';
+                },
+                onSubcategoryChange() {
+                    this.form.subitem = '';
+                },
+                async handleSubmit() {
+                    this.submitting = true;
+                    this.successMessage = '';
+                    try {
+                        await apiService.createPost({ ...this.form });
+                        this.successMessage = 'Notícia publicada! 🎉';
+                        this.form = {
+                            title: '',
+                            slug: '',
+                            imageUrl: '',
+                            category: '',
+                            subcategory: '',
+                            subitem: '',
+                            excerpt: '',
+                            content: '',
+                            publishDate: new Date().toISOString().split('T')[0]
+                        };
+                        this.slugAutoGenerated = false;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } catch (error) {
+                        alert('❌ Erro ao salvar.');
+                    }
+                    finally {
+                        this.submitting = false;
+                    }
+                }
+            },
+            created() {
+                utils.updateMetaTags('Publicar Nova Notícia | LumiSports', 'Compartilhe novidades.');
+            }
+        };
+
+        // Componente NewAd
+        const NewAd = {
+            template: `<div class="form-container"><h1>Cadastrar Anúncio</h1>
+            <div v-if="successMessage" class="message success"><div><strong>{{ successMessage }}</strong></div></div>
+            <form @submit.prevent="handleSubmit">
+                <div class="form-group"><label>Título *</label><input v-model="form.title" required></div>
+                <div class="form-group"><label>Descrição *</label><textarea v-model="form.description" rows="3" required></textarea></div>
+                <div class="form-group"><label>URL da Imagem *</label><input type="url" v-model="form.imageUrl" required></div>
+                <div class="form-group"><label>URL de Destino *</label><input type="url" v-model="form.url" required></div>
+                <div class="form-group"><label>Texto do Botão</label><input v-model="form.cta"></div>
+                <button type="submit" class="btn" :disabled="submitting">
+                    <i :class="submitting ? 'fas fa-spinner fa-spin' : 'fas fa-bullhorn'"></i>
+                    <span>{{ submitting ? 'Cadastrando...' : 'Cadastrar Anúncio' }}</span>
+                </button>
+            </form></div>`,
+            data() {
+                return {
+                    form: { title: '', description: '', imageUrl: '', url: '', cta: 'Saiba Mais' },
+                    submitting: false, successMessage: ''
+                };
+            },
+            methods: {
+                async handleSubmit() {
+                    this.submitting = true; this.successMessage = '';
+                    try {
+                        await apiService.createAd({ ...this.form });
+                        this.successMessage = 'Anúncio cadastrado! 🎉';
+                        this.form = { title: '', description: '', imageUrl: '', url: '', cta: 'Saiba Mais' };
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } catch (error) { alert('❌ Erro ao cadastrar.'); }
+                    finally { this.submitting = false; }
+                }
+            },
+            created() { utils.updateMetaTags('Cadastrar Anúncio | LumiSports', 'Cadastre anúncios.'); }
+        };
+
+        // Componente ManageAds
+        const ManageAds = {
+            template: `<div><div style="display:flex;justify-content:space-between;margin-bottom:2rem;">
+                <div><h1 style="font-size:2.5rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Gerenciar Anúncios</h1>
+                <p style="color:var(--text-secondary);">Total: {{ ads.length }}</p></div>
+                <router-link to="/anuncios/novo" class="btn"><i class="fas fa-plus-circle"></i> Novo Anúncio</router-link>
+            </div>
+            <div v-if="ads.length > 0" class="ads-grid">
+                <div v-for="ad in ads" :key="ad.id" class="ad-banner" style="cursor:default;">
+                    <img v-if="ad.imageUrl" :src="ad.imageUrl" class="ad-banner-image">
+                    <div class="ad-banner-content">
+                        <div class="ad-banner-title">{{ ad.title }}</div>
+                        <div class="ad-banner-description">{{ ad.description }}</div>
+                        <small style="color:var(--text-light);display:block;margin:0.5rem 0;"><i class="fas fa-link"></i> {{ ad.url }}</small>
+                        <button @click="deleteAd(ad.id)" class="btn-small btn-delete"><i class="fas fa-trash"></i> Excluir</button>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="empty-state">
+                <div class="empty-state-icon"><i class="fas fa-bullhorn"></i></div>
+                <h2>Nenhum anúncio cadastrado</h2>
+                <router-link to="/anuncios/novo" class="btn" style="margin-top:2rem;"><i class="fas fa-plus-circle"></i> Cadastrar Primeiro Anúncio</router-link>
+            </div></div>`,
+            data() { return { ads: [] }; },
+            methods: {
+                async loadAds() {
+                    try {
+                        this.ads = await apiService.getAds();
+                    } catch (error) {
+                        console.error('Erro ao carregar anúncios:', error);
+                    }
+                },
+                async deleteAd(id) {
+                    if (confirm('Tem certeza que deseja excluir este anúncio?')) {
+                        try {
+                            await apiService.deleteAd(id);
+                            await this.loadAds();
+                        } catch (error) {
+                            alert('Erro ao excluir anúncio');
+                        }
+                    }
+                }
+            },
+            async created() {
+                await this.loadAds();
+                utils.updateMetaTags('Gerenciar Anúncios | LumiSports', 'Gerencie anúncios.');
+            }
+        };
+
+        // Rotas
+        const routes = [
+            { path: '/', component: Home },
+            { path: '/blog/:slug', component: PostSingle },
+            { path: '/novo-post', component: NewPost },
+            { path: '/anuncios', component: ManageAds },
+            { path: '/anuncios/novo', component: NewAd }
+        ];
+
+        const router = createRouter({
+            history: createWebHashHistory(),
+            routes,
+            scrollBehavior(to, from, savedPosition) {
+                return savedPosition || { top: 0, behavior: 'smooth' };
+            }
+        });
+
+        router.afterEach((to) => {
+            if (to.path === '/') {
+                utils.updateMetaTags(
+                    'LumiSports | Notícias de Futebol, Brasileirão e Copa do Mundo 2026',
+                    'Cobertura completa: Flamengo, Palmeiras, Santos, Libertadores, Seleção Brasileira, análises e resultados.',
+                    { keywords: 'notícias futebol, Brasileirão 2026, Libertadores, Copa do Mundo 2026' }
+                );
+            }
+        });
+
+        // App Principal
+        const app = createApp({
+            data() {
+                return {
+                    theme: 'light',
+                    sidebarAds: [],
+                    currentDate: new Date().toLocaleDateString('pt-BR', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }),
+                    menuData: MENU_DATA,
+                    mobileMenuOpen: false,
+                    activeSubmenu: null
+                };
+            },
+            computed: {
+                showSidebar() {
+                    const path = this.$route.path;
+                    return path === '/' || path.startsWith('/blog/');
+                },
+                isHomePage() {
+                    return this.$route.path === '/';
+                }
+            },
+            methods: {
+                toggleTheme() {
+                    this.theme = this.theme === 'light' ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', this.theme);
+                    utils.setCookie('lumisports-theme', this.theme);
+                },
+                loadTheme() {
+                    const savedTheme = utils.getCookie('lumisports-theme');
+                    if (savedTheme) {
+                        this.theme = savedTheme;
+                        document.documentElement.setAttribute('data-theme', this.theme);
+                    }
+                },
+                async loadSidebarAds() {
+                    try {
+                        const allAds = await apiService.getAds();
+                        this.sidebarAds = allAds.slice(0, 3);
+                    } catch (error) {
+                        console.error('Erro ao carregar anúncios da sidebar:', error);
+                    }
+                },
+                handleAdClick(adId) {
+                    console.log('Anúncio clicado:', adId);
+                },
+                toggleMobileMenu() {
+                    this.mobileMenuOpen = !this.mobileMenuOpen;
+                    if (this.mobileMenuOpen) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                        this.activeSubmenu = null;
+                    }
+                },
+                closeMobileMenu() {
+                    this.mobileMenuOpen = false;
+                    document.body.style.overflow = '';
+                    this.activeSubmenu = null;
+                },
+                toggleMobileSubmenu(submenu) {
+                    if (this.activeSubmenu === submenu) {
+                        this.activeSubmenu = null;
+                    } else {
+                        this.activeSubmenu = submenu;
+                    }
+                },
+                closeSubmenu() {
+                    this.activeSubmenu = null;
+                },
+                async loadMenuData() {
+                    try {
+                        // Carregar times da API
+                        const teamsResponse = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.teams}`);
+                        if (teamsResponse.ok) {
+                            const teams = await teamsResponse.json();
+                            this.menuData.futebol.teams = teams.map(team => ({
+                                name: team.name,
+                                logo: team.logo || team.logoUrl,
+                                route: `/time/${team.slug || team.name.toLowerCase()}`
+                            }));
+                        }
+
+                        // Carregar competições da API
+                        const compsResponse = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.competitions}`);
+                        if (compsResponse.ok) {
+                            const competitions = await compsResponse.json();
+                            this.menuData.futebol.competitions = competitions.map(comp => ({
+                                name: comp.name,
+                                icon: comp.icon || 'fas fa-trophy',
+                                route: `/campeonato/${comp.slug || comp.name.toLowerCase()}`
+                            }));
+                        }
+
+                        // Carregar esportes da API
+                        const sportsResponse = await fetch(`${API_CONFIG.baseURL}${API_CONFIG.endpoints.sports}`);
+                        if (sportsResponse.ok) {
+                            const sports = await sportsResponse.json();
+                            this.menuData.esportes.list = sports.map(sport => ({
+                                name: sport.name,
+                                icon: sport.icon || 'fas fa-basketball-ball',
+                                route: `/esporte/${sport.slug || sport.name.toLowerCase()}`
+                            }));
+                        }
+                    } catch (error) {
+                        console.log('Usando dados estáticos do menu (API não disponível)');
+                    }
+                }
+            },
+            mounted() {
+                this.loadTheme();
+                this.loadSidebarAds();
+                this.loadMenuData();
+            },
+            watch: {
+                '$route'() {
+                    this.loadSidebarAds();
+                    this.$nextTick(() => {
+                        try {
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        } catch (e) {
+                            console.log('AdSense init:', e.message);
+                        }
+                    });
+                }
+            }
+        });
+
+        app.use(router);
+        app.mount('#app');
+
+        console.log('🏆 LumiSports carregado! API:', API_CONFIG.baseURL, '| Posts locais:', SITE_CONFIG.localPostsPath);
+    </script>
+</body>
+
+</html>
