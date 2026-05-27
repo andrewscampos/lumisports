@@ -19,6 +19,12 @@ CATEGORY_LABELS = {
     "libertadores": "Libertadores",
     "santos": "Santos",
     "brasil": "Seleção Brasileira",
+    "palmeiras": "Palmeiras",
+    "selecao-brasileira": "Seleção Brasileira",
+    "neymar": "Neymar",
+    "cartola-feminino": "Cartola Feminino",
+    "formula1": "Fórmula 1",
+    "futebol-internacional": "Futebol Internacional",
 }
 
 
@@ -30,6 +36,14 @@ def post_image_url(post):
     """Retorna URL da imagem do post ou a imagem padrão local."""
     url = (post.get("imageUrl") or "").strip()
     return url if url else DEFAULT_POST_IMAGE
+
+
+def page_image_src(post):
+    """Retorna o src correto para a imagem dentro da página gerada."""
+    url = post_image_url(post)
+    if url.startswith("http://") or url.startswith("https://"):
+        return url
+    return f"../{url.lstrip('/')}"
 
 
 def is_default_image(post):
@@ -92,8 +106,8 @@ def article_page(post, all_posts):
     desc = post.get("metaDescription") or post["excerpt"]
     keywords = post.get("metaKeywords", "")
     cat = CATEGORY_LABELS.get(post.get("subitem") or post.get("category"), "Futebol")
-    img_rel = "../" + post_image_url(post)
     img_abs = absolute_url(post_image_url(post))
+    img_src = page_image_src(post)
     logo_abs = absolute_url(LOGO_FILE)
     img_default = is_default_image(post)
     img_class = "post-featured-image post-featured-image--default" if img_default else "post-featured-image"
@@ -152,7 +166,7 @@ def article_page(post, all_posts):
             <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para notícias</a>
             {adsense_block()}
             <article class="post-single" itemscope itemtype="https://schema.org/NewsArticle">
-                <img src="{esc(img_rel)}" alt="{esc(post["title"])}" class="{img_class}" width="1200" height="630" itemprop="image" onerror="this.onerror=null;this.src='../{DEFAULT_POST_IMAGE}';this.classList.add('post-featured-image--default');">
+                <img src="{esc(img_src)}" alt="{esc(post["title"])}" class="{img_class}" width="1200" height="630" itemprop="image" onerror="this.onerror=null;this.src='../{DEFAULT_POST_IMAGE}';this.classList.add('post-featured-image--default');">
                 <div class="post-single-header">
                     <span class="category-badge" style="position:static;display:inline-block;margin-bottom:1rem;">{esc(cat)}</span>
                     <h1 itemprop="headline">{esc(post["title"])}</h1>
