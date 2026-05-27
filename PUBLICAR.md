@@ -34,7 +34,7 @@ Altere `SITE_URL` em `scripts/build-static.py` se o domínio for diferente de `h
 
 ## Imagens
 
-- **Logo:** `logo.svg` (cabeçalho) e `images/logo-icon.svg` (favicon)
+- **Logo:** `images/logo.png` (cabeçalho e favicon)
 - **Padrão de matéria:** `images/default-post.svg` — usada automaticamente quando `imageUrl` estiver vazio no `posts.json`
 - Se a URL externa falhar ao carregar, a página da matéria também cai no fallback padrão (`onerror` no `<img>`)
 

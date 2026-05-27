@@ -10,8 +10,10 @@ BLOG_DIR = ROOT / "blog"
 SITE_URL = "https://lumisports.com.br"
 ADSENSE_CLIENT = "ca-pub-6974524299465436"
 ADSENSE_SLOT = "6752427405"
-LOGO_FILE = "logo.svg"
+LOGO_FILE = "images/logo.png"
+FAVICON_FILE = "images/logo.png"
 DEFAULT_POST_IMAGE = "images/default-post.svg"
+LOGO_ALT = "LumiSport Blog"
 
 CATEGORY_LABELS = {
     "futebol": "Futebol",
@@ -145,7 +147,7 @@ def article_page(post, all_posts):
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/site.css">
-    <link rel="icon" href="../images/logo-icon.svg" type="image/svg+xml">
+    <link rel="icon" href="../{FAVICON_FILE}" type="image/png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>
     <script type="application/ld+json">{json_ld_article(post, page_url, img_abs, logo_abs)}</script>
 </head>
@@ -153,7 +155,7 @@ def article_page(post, all_posts):
     <header>
         <div class="top-bar"><div class="top-bar-content"><i class="fas fa-calendar-alt"></i> <span id="current-date"></span></div></div>
         <nav>
-            <a href="../index.html" class="logo"><img src="../{LOGO_FILE}" alt="LumiSports" width="200" height="48"></a>
+            <a href="../index.html" class="logo"><img src="../{LOGO_FILE}" alt="{LOGO_ALT}" width="240" height="72"></a>
             <ul class="nav-links">
                 <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="../index.html#noticias">Notícias</a></li>
@@ -248,7 +250,7 @@ def index_page(posts):
     <meta property="og:description" content="Flamengo, Palmeiras, Santos, Libertadores e Seleção Brasileira.">
     <meta property="og:url" content="{SITE_URL}/">
     <meta property="og:image" content="{default_og}">
-    <link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
+    <link rel="icon" href="{FAVICON_FILE}" type="image/png">
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,7 +264,7 @@ def index_page(posts):
     <header>
         <div class="top-bar"><div class="top-bar-content"><i class="fas fa-calendar-alt"></i> <span id="current-date"></span></div></div>
         <nav>
-            <a href="index.html" class="logo"><img src="{LOGO_FILE}" alt="LumiSports" width="200" height="48"></a>
+            <a href="index.html" class="logo"><img src="{LOGO_FILE}" alt="{LOGO_ALT}" width="240" height="72"></a>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="#noticias">Notícias</a></li>
