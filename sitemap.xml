@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://lumisports.com.br/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://lumisports.com.br/feed.xml</loc><changefreq>daily</changefreq><priority>0.4</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/relatorios.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/gestao.html</loc><lastmod>2026-06-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/preparacao.html</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/tatica.html</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/mercado-da-bola.html</loc><lastmod>2026-06-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/treinamento.html</loc><lastmod>2026-06-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/scouting.html</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/tecnologia.html</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/analise.html</loc><lastmod>2026-05-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/categoria/estrategia.html</loc><lastmod>2026-05-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://lumisports.com.br/categoria/formula1.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://lumisports.com.br/categoria/cartola-feminino.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://lumisports.com.br/categoria/futebol-internacional.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -12,16 +22,45 @@
   <url><loc>https://lumisports.com.br/categoria/libertadores.html</loc><lastmod>2026-05-21</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://lumisports.com.br/categoria/neymar.html</loc><lastmod>2026-05-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://lumisports.com.br/categoria/brasil.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lumisports.com.br/tag/futebol.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/relatorios.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/analise.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/rotina.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/gestao.html</loc><lastmod>2026-06-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/tecnico.html</loc><lastmod>2026-06-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/temporada.html</loc><lastmod>2026-06-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/preparacao.html</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/aquecimento.html</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/intensidade.html</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/tatica.html</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/comissao-tecnica.html</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/padroes.html</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/mercado-da-bola.html</loc><lastmod>2026-06-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/scouting.html</loc><lastmod>2026-06-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/contratacao.html</loc><lastmod>2026-06-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/calendario.html</loc><lastmod>2026-06-06</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/elenco.html</loc><lastmod>2026-06-06</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/treinamento.html</loc><lastmod>2026-06-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/base.html</loc><lastmod>2026-06-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/aprendizado.html</loc><lastmod>2026-06-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/indicadores.html</loc><lastmod>2026-06-04</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/integracao.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/performance.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/fisico.html</loc><lastmod>2026-06-02</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/partida.html</loc><lastmod>2026-06-02</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/treinador.html</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/planejamento.html</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/dados.html</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/tecnologia.html</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/tag/estrategia.html</loc><lastmod>2026-05-28</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/formula-1.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/max-verstappen.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/red-bull.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lumisports.com.br/tag/analise.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/lando-norris.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/mclaren.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/automobilismo.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/cartola.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/futebol-feminino.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lumisports.com.br/tag/estrategia.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/liga-feminina-petrobras.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/neymar.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/san-lorenzo.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -46,9 +85,23 @@
   <url><loc>https://lumisports.com.br/tag/manchester-united.html</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/ederson.html</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/atalanta.html</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lumisports.com.br/tag/mercado-da-bola.html</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/copa-do-mundo-2026.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://lumisports.com.br/tag/ancelotti.html</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lumisports.com.br/blog/revisar-jogos-relatorios-sem-perder-tempo.html</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/troca-tecnico-sem-perder-historico-temporada.html</loc><lastmod>2026-06-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/ativacao-antes-do-jogo-melhora-resposta-time.html</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/montar-biblioteca-tatica-respostas-rapidas.html</loc><lastmod>2026-06-08</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/perguntas-qualificam-melhor-reforco.html</loc><lastmod>2026-06-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/preparar-elenco-sequencia-pesada-jogos.html</loc><lastmod>2026-06-06</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/treinamento-atletas-roteiro-reduzir-erros-campo.html</loc><lastmod>2026-06-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/indicadores-importam-painel-de-jogo.html</loc><lastmod>2026-06-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/integrar-analise-fisiologia-campo-reduzir-retrabalho.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/evitar-time-suma-segundo-tempo.html</loc><lastmod>2026-06-02</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/preservar-contexto-treinador-muda-meio-temporada.html</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/analise-dados-priorizar-jogadores-em-alta.html</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/quando-video-ajuda-quando-olho-do-tecnico-pesa-mais.html</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/primeira-correcao-tatica-muda-jogo.html</loc><lastmod>2026-05-29</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lumisports.com.br/blog/como-montar-primeiro-plano-de-jogo-time.html</loc><lastmod>2026-05-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://lumisports.com.br/blog/verstappen-temporada-duvidas-regras-f1.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://lumisports.com.br/blog/lando-norris-triplice-coroa-futuro.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://lumisports.com.br/blog/cartola-feminino-leitura-jogo-vale-ouro.html</loc><lastmod>2026-05-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>

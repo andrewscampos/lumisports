@@ -37,6 +37,16 @@ CATEGORY_LABELS = {
     "cartola-feminino": "Cartola Feminino",
     "formula1": "Fórmula 1",
     "futebol-internacional": "Futebol Internacional",
+    "estrategia": "Estratégia",
+    "analise": "Análise",
+    "tecnologia": "Tecnologia",
+    "scouting": "Scouting",
+    "gestao": "Gestão",
+    "preparacao": "Preparação",
+    "relatorios": "Relatórios",
+    "tatica": "Tática",
+    "treinamento": "Treinamento",
+    "mercado-da-bola": "Mercado da Bola",
 }
 
 HOME_TOPICS = [
@@ -46,6 +56,10 @@ HOME_TOPICS = [
     ("neymar", "Neymar"),
     ("futebol-internacional", "Futebol Internacional"),
     ("formula1", "Fórmula 1"),
+    ("estrategia", "Estratégia"),
+    ("analise", "Análise"),
+    ("gestao", "Gestão"),
+    ("treinamento", "Treinamento"),
 ]
 
 
@@ -131,8 +145,18 @@ def post_title(post: dict) -> str:
     return post["title"]
 
 
+def render_post_content(content: str) -> str:
+    text = (content or "").strip()
+    if not text:
+        return ""
+    # Support rich HTML posts while keeping the original plain-text format working.
+    if "<" in text and ">" in text:
+        return text
+    return "".join(f"<p>{esc(p)}</p>" for p in text.split("\n\n") if p.strip())
+
+
 def page_image_src(post: dict, assets_prefix: str = "") -> str:
-    url = post_image_url(post)
+    url = (post.get("imageUrl") or "").strip()
     if url.startswith("http://") or url.startswith("https://"):
         return url
     return f"{assets_prefix}{url.lstrip('/')}"
@@ -322,7 +346,7 @@ def article_page(post: dict, all_posts: list[dict]) -> str:
     logo_abs = absolute_url(LOGO_FILE)
     img_class = "post-featured-image post-featured-image--default" if is_default_image(post) else "post-featured-image"
 
-    paragraphs = "".join(f"<p>{esc(p)}</p>" for p in post["content"].split("\n\n") if p.strip())
+    paragraphs = render_post_content(post["content"])
     tags_html = "".join(
         f'<a class="post-tag" href="../tag/{slugify(t)}.html">{esc(t)}</a>' for t in post.get("tags", [])
     )
