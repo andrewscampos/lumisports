@@ -1,7 +1,7 @@
 [
   {
     "id": 9,
-    "title": "As novas regras colocaram Verstappen numa temporada de dúvidas e ruído",
+    "title": "Verstappen vive dúvidas na Red Bull sob novas regras",
     "slug": "verstappen-temporada-duvidas-regras-f1",
     "category": "formula1",
     "subitem": "formula1",
@@ -22,7 +22,7 @@
   },
   {
     "id": 10,
-    "title": "Lando Norris olha além da Fórmula 1 e mantém viva a ideia da Tríplice Coroa",
+    "title": "Lando Norris mantém viva a Tríplice Coroa",
     "slug": "lando-norris-triplice-coroa-futuro",
     "category": "formula1",
     "subitem": "formula1",
@@ -43,7 +43,7 @@
   },
   {
     "id": 8,
-    "title": "Rodada quase perfeita no Cartola Feminino prova que leitura de jogo vale ouro",
+    "title": "Cartola Feminino: rodada premiou leitura de jogo",
     "slug": "cartola-feminino-leitura-jogo-vale-ouro",
     "category": "futebol",
     "subitem": "cartola-feminino",
@@ -64,7 +64,7 @@
   },
   {
     "id": 12,
-    "title": "San Lorenzo usa o nome de Neymar para medir o tamanho do próprio sonho",
+    "title": "San Lorenzo sonha com Neymar e mede sua ambição",
     "slug": "san-lorenzo-neymar-sonho-clube",
     "category": "futebol",
     "subitem": "futebol-internacional",
@@ -85,7 +85,7 @@
   },
   {
     "id": 6,
-    "title": "Seleção Brasileira precisa baixar o volume para não se perder no próprio entusiasmo",
+    "title": "Seleção Brasileira precisa fugir do oba-oba",
     "slug": "selecao-brasileira-baixar-volume-entusiasmo",
     "category": "futebol",
     "subitem": "selecao-brasileira",
@@ -106,7 +106,7 @@
   },
   {
     "id": 5,
-    "title": "Palmeiras vira o ponto de equilíbrio de um Brasileirão cada vez mais apertado",
+    "title": "Palmeiras vira o eixo de um Brasileirão apertado",
     "slug": "palmeiras-brasileirao-ponto-equilibrio",
     "category": "futebol",
     "subitem": "palmeiras",
@@ -128,7 +128,7 @@
   {
     "id": 3,
     "sourceTxt": "txts/cuca-evita-previsao-sobre-uso-de-neymar-no-santos-tudo-no-entorno-dele-e-complicado.txt",
-    "title": "Cuca evita cravar Neymar no Santos e detalha lesão na panturrilha antes da Copa",
+    "title": "Cuca trata com cautela a situação de Neymar",
     "slug": "cuca-neymar-santos-panturrilha-sul-americana-copa-2026",
     "category": "futebol",
     "subcategory": "times",
@@ -153,7 +153,7 @@
   {
     "id": 2,
     "sourceTxt": "txts/abel-faz-alerta-para-arbitragem-de-flamengo-x-palmeiras-e-preciso-coragem-para-apitar.txt",
-    "title": "Abel Ferreira pede arbitragem corajosa no Flamengo x Palmeiras: entenda o contexto",
+    "title": "Abel pede arbitragem corajosa no Fla x Palmeiras",
     "slug": "abel-ferreira-arbitragem-corajosa-flamengo-palmeiras",
     "category": "futebol",
     "subcategory": "campeonatos",
@@ -177,7 +177,7 @@
   {
     "id": 1,
     "sourceTxt": "txts/analise-flamengo-desamarra-jogo-tipico-de-libertadores-e-pega-moral-para-encarar-palmeiras.txt",
-    "title": "Flamengo vence Estudiantes na Libertadores e chega com moral ao clássico contra o Palmeiras",
+    "title": "Flamengo vence o Estudiantes e ganha moral",
     "slug": "flamengo-vence-estudiantes-libertadores-moral-palmeiras",
     "category": "futebol",
     "subcategory": "campeonatos",
@@ -201,7 +201,7 @@
   },
   {
     "id": 7,
-    "title": "Neymar segue sendo o nome que muda o clima do futebol brasileiro",
+    "title": "Neymar ainda muda o clima do futebol brasileiro",
     "slug": "neymar-muda-clima-futebol-brasileiro",
     "category": "futebol",
     "subitem": "neymar",
@@ -222,7 +222,7 @@
   },
   {
     "id": 11,
-    "title": "Éderson entra no radar do Manchester United e agita a janela europeia",
+    "title": "Éderson no radar do Manchester United",
     "slug": "ederson-radar-manchester-united-janela-europeia",
     "category": "futebol",
     "subitem": "futebol-internacional",
@@ -244,7 +244,7 @@
   {
     "id": 4,
     "sourceTxt": "txts/selecao-10-03-2026.txt",
-    "title": "Convocação da Seleção Brasileira: lista de Ancelotti, novidades e agenda até a Copa 2026",
+    "title": "Seleção de Ancelotti: lista e agenda até a Copa 2026",
     "slug": "convocacao-selecao-brasileira-ancelotti-copa-2026",
     "category": "futebol",
     "subcategory": "selecoes",
