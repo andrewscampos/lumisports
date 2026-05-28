@@ -59,7 +59,8 @@ def absolute_url(path):
 
 
 def adsense_block():
-    return f'''<div class="adsense-block">
+    return f'''<div class="adsense-block" data-adsense>
+<span class="adsense-label">Publicidade</span>
 <ins class="adsbygoogle" style="display:block" data-ad-client="{ADSENSE_CLIENT}"
     data-ad-slot="{ADSENSE_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>'''
